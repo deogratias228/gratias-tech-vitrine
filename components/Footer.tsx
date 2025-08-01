@@ -1,8 +1,8 @@
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter, WheatIcon } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="text-gray-500 pt-12 pb-6 px-4 md:px-12 mt-20 border-gray-500 border-t">
+    <footer className="pt-12 pb-6 px-4 md:px-12 mt-20 border-gray-400 border-t">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Bloc présentation */}
         <div>
@@ -27,8 +27,15 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +228 XX XX XX XX</li>
-            <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> contact@gratiastech.com</li>
+            <li className="flex items-center gap-2"><Phone className="w-4 h-4" />
+             <a href="tel:+22899866863">+228 99 86 68 63</a>
+            </li>
+            <li className="flex items-center gap-2"><WheatIcon className="w-4 h-4" />
+             <a href="https://wa.link/fb90tg" className="">Wh +228 91 90 28 24</a> 
+            </li>
+            <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> 
+            <a href="mailto:hello@deowoblesse.tech">hello@deowoblesse.tech</a>
+            </li>
           </ul>
           <div className="flex gap-4 mt-4">
             <a href="#"><Facebook className="w-5 h-5 hover:text-gray-200" /></a>

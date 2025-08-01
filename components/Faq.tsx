@@ -40,28 +40,28 @@ export default function FAQ() {
     return (
         <section className="py-8 bg-white px-6">
             <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
+                <h2 className="text-xl md:text-4xl font-bold text-gray-800 text-center mb-10">
                     Foire aux questions
                 </h2>
                 <div className="">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
-                            className="border-b border-gray-200 overflow-hidden">
+                            className="border-b border-gray-300 overflow-hidden">
                             <button
-                                className="w-full px-6 py-4 flex justify-between items-center text-left text-gray-800 focus:outline-none"
+                                className="w-full px-1 md:px-6 py-4 flex justify-between items-center text-left text-gray-800 focus:outline-none cursor-pointer"
                                 onClick={() => toggle(index)} >
 
                                 <span>
-                                    <span className="text-5xl text-gray-500 font-bold">0{index + 1}.</span>
-                                    <span className="text-2xl font-bold ps-2">{faq.question}</span>
+                                    <span className="text-xl md:text-5xl text-gray-500 font-bold">0{index + 1}.</span>
+                                    <span className="text-sm md:text-2xl font-bold ps-2">{faq.question}</span>
                                 </span>
 
                                 <ChevronDown
                                     className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""}`} />
                             </button>
                             {openIndex === index && (
-                                <div className="px-22 pb-4 text-gray-600 text-xl">
+                                <div className="px-2 lg:px-22 pb-4 text-gray-600 text-sm md:text-xl">
                                     <div className="pl-4 border-s-4 border-s-gray-400">
                                         {faq.answer}
                                     </div>
