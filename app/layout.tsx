@@ -37,20 +37,20 @@ export const metadata: Metadata = {
     "site vitrine",
     "e-commerce",
   ],
-  authors: [{ name: "Gratias Technology", url: "https://gratias-technology.com" }],
+  authors: [{ name: "Gratias Technology", url: "https://deowoblesse.tech" }],
   creator: "Gratias Technology",
   publisher: "Gratias Technology",
   openGraph: {
     title: "Gratias Technology - Création de sites web modernes et mobiles",
     description:
       "Création de sites web, boutiques en ligne et pages de lancement adaptées à votre ambition. Startup tech innovante basée en Afrique.",
-    url: "https://gratias-technology.com",
+    url: "https://deowoblesse.tech",
     siteName: "Gratias Technology",
     locale: "fr_FR",
     type: "website",
     images: [
       {
-        url: "https://gratias-technology.com/og-image.jpg", // remplace par ta vraie image Open Graph
+        url: "https://deowoblesse.tech/og-image.jpg", // remplace par ta vraie image Open Graph
         width: 1200,
         height: 630,
         alt: "Gratias Technology - création de sites web modernes",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     description:
       "Votre partenaire pour des solutions digitales modernes, accessibles et performantes.",
     creator: "@gratias_tech", // Remplace par ton vrai handle
-    images: ["https://gratias-technology.com/og-image.jpg"],
+    images: ["https://deowoblesse.tech/og-image.jpg"],
   },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
