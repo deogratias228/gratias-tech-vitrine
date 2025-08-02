@@ -58,7 +58,7 @@ export default function CustomSwiper({
         {items.map((item, idx) => (
           <SwiperSlide key={idx}>
             <div className="group relative h-full pt-16">
-              <div className="relative flex flex-col items-center h-full rounded-2xl p-4 border border-[#1DAEFF] bg-white shadow-md hover:shadow-lg transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+              <div className="relative flex flex-col items-center h-full rounded-2xl p-4 border border-gray-200 bg-white shadow-md hover:shadow-lg transition-all duration-500 hover:-translate-y-2 overflow-hidden">
                 <div className="flex flex-col text-center px-4 pb-4 pt-8">
                   <h3 className="text-xl font-bold text-[#111827] mb-2">
                     {item.title}

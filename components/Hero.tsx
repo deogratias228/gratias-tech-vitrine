@@ -6,24 +6,26 @@ export default function Hero() {
         <img
           src="./hero_bg.png"
           alt="Un utilisateur heureux avec son site web"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover object-center opacity-30"
         />
-        <div className="absolute inset-0 bg-black/15" />
+        {/* Overlay plus sombre pour lisibilité renforcée */}
+        <div className="absolute inset-0 bg-black/35" />
       </div>
 
       {/* Section Hero */}
-      <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-16 py-10 px-4 md:px-8">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 py-6 px-4 md:flex-row md:justify-between md:gap-16 md:py-10 md:px-8">
         {/* Bloc Texte */}
-        <div className="text-center md:text-left max-w-xl">
-          <h1 className="text-xl md:text-4xl font-bold mb-4 md:mb-12 leading-tight text-gray-900">
-            Boostez votre présence digitale
+        <div className="text-center max-w-xl mx-auto md:text-left">
+          {/* Texte */}
+          <h1 className="text-gray-900 text-xl font-bold mb-4 md:text-4xl leading-tight">
+            Boostez votre présence digitale&nbsp;
             <br className="hidden md:block" />
             avec <span className="text-primary">Gratias Technology</span>
           </h1>
-          <p className="text-sm md:text-lg mb-2 md:mb-6 text-gray-700">
+          <p className="text-gray-800 text-sm mb-4 md:text-lg">
             Création de sites web, boutiques en ligne et pages de lancement adaptés à chaque ambition
           </p>
-          <button className="text-[#1DAEFF] cursor-pointer border border-[#1DAEFF] rounded-xl px-5 py-2 hover:bg-[#1DAEFF] hover:text-white transition">
+          <button className="bg-[#e0f2fe] text-[#1DAEFF] border border-[#1DAEFF] rounded-xl px-6 py-2 hover:bg-[#1DAEFF] hover:text-white transition shadow-sm">
             Commencer maintenant
           </button>
         </div>

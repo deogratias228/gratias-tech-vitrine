@@ -34,12 +34,17 @@ export default function Testimonials() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {testimonials.map((testi, index) => (
-          <div key={index} className="border border-[#1DAEFF]/30 hover:bg-[#1DAEFF]/15 cursor-pointer shadow bg-gray-50 p-4 rounded-xl mb-4">
-            <p className="italic mb-4">
+          <div
+            key={index}
+            className="border border-gray-200 cursor-pointer shadow-xl bg-white p-4 rounded-xl mb-4
+                 flex flex-col justify-between"
+            style={{ minHeight: '250px' }} // optionnel : fixe une hauteur minimum pour homogénéité
+          >
+            <p className="italic mb-4 flex-grow">
               <span className="text-3xl font-bold">"</span>{testi.content}
             </p>
 
-            <div className="flex w-full">
+            <div className="flex w-full items-center mt-4">
               <div className="rounded-full p-2 h-12 w-12 bg-[#1DAEFF]/30">
                 <UserRoundIcon className="w-full h-full object-cover" />
               </div>
@@ -51,6 +56,7 @@ export default function Testimonials() {
           </div>
         ))}
       </div>
+
     </section>
   );
 }

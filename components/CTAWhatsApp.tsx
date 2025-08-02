@@ -18,7 +18,7 @@ export default function CTAWhatsApp() {
                         Prêt à passer à l’action ?
                     </h2>
                     <p className="text-gray-600 text-sm mb-2 md:mb-6">
-                        Discutons ensemble sur WhatsApp ! C’est simple, rapide et sans engagement.
+                        Bénéficiez d’un accompagnement personnalisé avec un partenaire de confiance. Discutons-en sur WhatsApp dès maintenant !
                     </p>
                     <div className="w-full flex justify-center md:justify-start">
                         <a
@@ -27,7 +27,7 @@ export default function CTAWhatsApp() {
                             rel="noopener noreferrer"
                             className="border border-[#1DAEFF] text-[#1DAEFF] px-2 md:px-6 py-2 rounded-xl hover:bg-[#1DAEFF] hover:text-white transition text-sm"
                         >
-                            Commencer maintenant
+                            Contacter sur WhatsApp
                         </a>
                     </div>
                 </div>
