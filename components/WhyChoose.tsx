@@ -37,10 +37,10 @@ const features = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="w-full px-4 md:px-12 bg-white mb-2 md:mb-8 pt-8">
+    <section className="w-full px-4 md:px-12 mb-2 md:mb-8 pt-8">
       <div className="text-center">
         <h2 className="text-xl md:text-3xl font-bold text-center mb-3" id="whychoose">
-          Pourquoi choisir <span className="md:block inline text-[#1DAEFF]">Gratias Technology</span> ?
+          Pourquoi choisir <span className="text-[#1DAEFF]">Gratias Technology</span> ?
         </h2>
         <p className="text-[#4B5563] text-sm max-w-2xl mx-auto leading-relaxed">
           Découvrez ce qui nous rend uniques dans chaque projet que nous menons.

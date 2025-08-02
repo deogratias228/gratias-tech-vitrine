@@ -2,12 +2,12 @@ import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter, WheatIcon } from "
 
 export default function Footer() {
   return (
-    <footer className="pt-12 pb-6 px-4 md:px-12 mt-20 border-gray-400 border-t">
+    <footer className="pt-6 pb-6 px-4 md:px-12 mt-20 border-gray-400 border-t">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Bloc présentation */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Gratias Technology</h2>
-          <p className="text-sm opacity-90">
+          <img src="./logo.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto" />
+          <p className="text-sm md:text-base opacity-90">
             Nous créons des sites web, boutiques et outils digitaux adaptés aux ambitions africaines. Proximité, efficacité, simplicité.
           </p>
         </div>
@@ -28,13 +28,13 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2"><Phone className="w-4 h-4" />
-             <a href="tel:+22899866863">+228 99 86 68 63</a>
+              <a href="tel:+22899866863">+228 99 86 68 63</a>
             </li>
             <li className="flex items-center gap-2"><WheatIcon className="w-4 h-4" />
-             <a href="https://wa.link/fb90tg" className="">Wh +228 91 90 28 24</a> 
+              <a href="https://wa.link/fb90tg" className="">Wh +228 91 90 28 24</a>
             </li>
-            <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> 
-            <a href="mailto:hello@deowoblesse.tech">hello@deowoblesse.tech</a>
+            <li className="flex items-center gap-2"><Mail className="w-4 h-4" />
+              <a href="mailto:hello@deowoblesse.tech">hello@deowoblesse.tech</a>
             </li>
           </ul>
           <div className="flex gap-4 mt-4">

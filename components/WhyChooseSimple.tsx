@@ -32,7 +32,7 @@ const features = [
 
 export default function WhyChooseSimple() {
     return (
-        <section className="w-full px-4 md:px-12 py-10 bg-white">
+        <section className="w-full px-4 md:px-12 py-10">
             <div className="text-center mb-8">
                 <h2 className="text-2xl md:text-3xl font-bold mb-3">
                     Pourquoi choisir <span className="text-[#1DAEFF]">Gratias Technology</span> ?
