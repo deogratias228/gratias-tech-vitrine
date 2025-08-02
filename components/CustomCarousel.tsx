@@ -58,7 +58,11 @@ export default function CustomCarousel({
 
     useEffect(() => {
         resetAutoPlay();
-        return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
     }, [current, visibleCount, autoPlay]);
 
     const nextSlide = () => {

@@ -10,16 +10,22 @@ import WhyChooseSimple from "@/components/WhyChooseSimple";
 
 export default function Home() {
   return (
-    <div className="w-full p-4 md:px-28">
-      <TopBar />
-      <Hero />
-      <Services />
-      <WhyChoose />
-      {/* <WhyChooseSimple /> */}
-      <Testimonials />
-      <CTAWhatsApp />
-      <FAQ />
-      <Footer />
+    <div className="">
+      <div className="w-full p-4 md:px-28">
+        <TopBar />
+      </div>
+      <div className="w-full p-0 md:px-28">
+        <Hero />
+      </div>
+      <div className="w-full p-4 md:px-28">
+        <Services />
+        <WhyChoose />
+        {/* <WhyChooseSimple /> */}
+        <Testimonials />
+        <CTAWhatsApp />
+        <FAQ />
+        <Footer />
+      </div>
     </div>
   );
 }

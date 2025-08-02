@@ -3,6 +3,19 @@
 :root {
   --background: #eee8e8e0;
   --foreground: #171717;
+  --gradient-start: #e0e0e0;
+  --gradient-mid: #ffffff;
+  --gradient-end: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --gradient-start: #0f172a;
+    --gradient-mid: #1e293b;
+    --gradient-end: #0f172a;
+  }
 }
 
 @theme inline {
@@ -12,15 +25,32 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Poppins, Arial, Helvetica, sans-serif;
+/* Classe du fond animé */
+.bg-animated {
+  background: linear-gradient(120deg,
+      var(--gradient-start),
+      var(--gradient-mid),
+      var(--gradient-end));
+  background-size: 400% 400%;
+  animation: bgMove 15s ease infinite;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
