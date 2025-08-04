@@ -1,6 +1,6 @@
 export default function TopBar() {
     return (
-        <div className="bg-white dark:bg-black/20 px-2 md:px-5 py-1 rounded-t md:rounded-b">
+        <div className="bg-blue-100 dark:bg-white/10 px-2 md:px-5 py-1 rounded-t md:rounded-xl">
             <div className="flex justify-between items-end">
                 <img src="./logo.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto dark:hidden" />
                 <img src="./logo-dark.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto hidden dark:block" />
