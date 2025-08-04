@@ -27,7 +27,7 @@ export default function Testimonials() {
     <section className="w-full px-4 md:px-12 mb-4 md:mb-8 pt-8">
       <div className="text-center mb-4">
         <h2 className="text-xl md:text-3xl font-bold text-center mb-0 md:mb-3">Ils nous ont fait confiance</h2>
-        <p className="text-[#4B5563] max-w-2xl mx-auto text-sm leading-relaxed">
+        <p className="text-[#4B5563] dark:text-gray-300 max-w-2xl mx-auto text-sm leading-relaxed">
           Ce qu'ils disent de leur expérience avec <span className="block sm:inline font-bold text-[#1DAEFF]">Gratias Technology</span>
         </p>
       </div>
@@ -36,7 +36,7 @@ export default function Testimonials() {
         {testimonials.map((testi, index) => (
           <div
             key={index}
-            className="border border-gray-200 cursor-pointer shadow-xl bg-white p-4 rounded-xl mb-4
+            className="border border-gray-200 dark:border-gray-900 cursor-pointer shadow-xl bg-white dark:bg-gray-950 p-4 rounded-xl mb-4
                  flex flex-col justify-between"
             style={{ minHeight: '250px' }} // optionnel : fixe une hauteur minimum pour homogénéité
           >

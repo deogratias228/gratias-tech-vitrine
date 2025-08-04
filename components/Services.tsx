@@ -87,17 +87,17 @@ export default function Services() {
                 {services.map(service => (
                     <div
                         key={service.id}
-                        className="flex flex-col justify-between border border-gray-300 rounded-xl p-5 shadow-sm hover:shadow-lg cursor-pointer transition"
+                        className="flex flex-col justify-between border border-gray-300 dark:border-gray-900 bg-transparent dark:bg-gray-950 dark:hover:border-gray-800 dark:hover:bg-gray-900 rounded-xl p-5 shadow-sm hover:shadow-lg cursor-pointer transition"
                         onClick={() => handleOpenModal(service)}
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => { if (e.key === 'Enter') handleOpenModal(service) }}
                     >
                         <div className="flex-1">
-                            <h3 className="text-xl md:text-2xl font-semibold text-[#2563eb] mb-3 text-center">
+                            <h3 className="text-xl md:text-2xl font-semibold text-[#2563eb] dark:text-white mb-3 text-center">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-700 text-center text-sm md:text-lg">
+                            <p className="text-gray-700 dark:text-gray-100 text-center text-sm md:text-lg">
                                 {service.description}
                             </p>
                         </div>
@@ -120,7 +120,7 @@ export default function Services() {
             {/* Modal */}
             {modalOpen && selectedService && (
                 <div
-                    className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+                    className="fixed inset-0 bg-black/50 dark:bg-black-20 flex items-center justify-center z-50 p-4"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="modal-title"
@@ -129,7 +129,7 @@ export default function Services() {
                         handleCloseModal();
                     }}
                 >
-                    <div className="bg-white rounded-2xl max-w-lg w-full p-6 relative shadow-lg overflow-y-auto max-h-[90vh]">
+                    <div className="bg-white dark:bg-gray-950 rounded-2xl max-w-lg w-full p-6 relative shadow-lg overflow-y-auto max-h-[90vh]">
                         <button
                             onClick={handleCloseModal}
                             className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 cursor-pointer"
@@ -142,9 +142,9 @@ export default function Services() {
                             {selectedService.title}
                         </h3>
 
-                        <p className="mb-4 text-gray-800">{selectedService.description}</p>
+                        <p className="mb-4 text-gray-800 dark:text-gray-400">{selectedService.description}</p>
 
-                        <ul className="mb-6 list-disc list-inside text-gray-700 space-y-1">
+                        <ul className="mb-6 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
                             {selectedService.details.map((item, idx) => (
                                 <li key={idx}>{item}</li>
                             ))}
@@ -155,7 +155,7 @@ export default function Services() {
                         </p>
 
                         <button
-                            className="w-full bg-accent hover:bg-[#1e40af] text-white rounded-lg py-3 font-semibold transition"
+                            className="w-full bg-accent dark:bg-accent hover:bg-[#1e40af] text-white rounded-lg py-3 font-semibold transition"
                             onClick={() => handleClickWhatsapp(selectedService.message)}
                         >
                             Demander ce service sur WhatsApp

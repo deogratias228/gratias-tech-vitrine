@@ -42,7 +42,7 @@ export default function WhyChooseSection() {
         <h2 className="text-xl md:text-3xl font-bold text-center mb-3" id="whychoose">
           Pourquoi choisir <span className="text-[#1DAEFF]">Gratias Technology</span> ?
         </h2>
-        <p className="text-[#4B5563] text-sm max-w-2xl mx-auto leading-relaxed">
+        <p className="text-[#4B5563] dark:text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed">
           Découvrez ce qui nous rend uniques dans chaque projet que nous menons.
         </p>
       </div>

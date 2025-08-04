@@ -40,7 +40,7 @@ export default function FAQ() {
     return (
         <section className="py-8 px-6">
             <div className="max-w-5xl mx-auto">
-                <h2 className="text-xl md:text-4xl font-bold text-gray-800 text-center mb-10">
+                <h2 className="text-xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-10">
                     Foire aux questions
                 </h2>
                 <div className="">
@@ -49,7 +49,7 @@ export default function FAQ() {
                             key={index}
                             className="border-b border-gray-300 overflow-hidden">
                             <button
-                                className="w-full px-1 md:px-6 py-4 flex justify-between items-center text-left text-gray-800 focus:outline-none cursor-pointer"
+                                className="w-full px-1 md:px-6 py-4 flex justify-between items-center text-left text-gray-800 dark:text-gray-200 focus:outline-none cursor-pointer"
                                 onClick={() => toggle(index)} >
 
                                 <span>
@@ -61,7 +61,7 @@ export default function FAQ() {
                                     className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""}`} />
                             </button>
                             {openIndex === index && (
-                                <div className="px-2 lg:px-22 pb-4 text-gray-600 text-sm md:text-xl">
+                                <div className="px-2 md:px-8 pb-4 text-gray-600 dark:text-gray-400 text-sm md:text-xl">
                                     <div className="pl-4 border-s-4 border-s-gray-400">
                                         {faq.answer}
                                     </div>

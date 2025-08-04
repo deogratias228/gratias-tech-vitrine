@@ -65,11 +65,11 @@ export const metadata: Metadata = {
     creator: "@gratias_tech", // Remplace par ton vrai handle
     images: ["https://deowoblesse.tech/og-image.jpg"],
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
-  viewport: "width=device-width, initial-scale=1",
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+  //   { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  // ],
+  // viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   icons: {
     icon: "/favicon.ico",

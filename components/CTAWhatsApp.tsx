@@ -1,7 +1,7 @@
 export default function CTAWhatsApp() {
     return (
         <section className="flex justify-center px-4 py-8 md:py-16">
-            <div className="relative bg-gradient-to-r from-[#e0f2fe] to-[#f0f9ff] rounded-3xl px-1 md:px-12 w-full max-w-5xl flex flex-col md:flex-row items-center gap-6 shadow-md">
+            <div className="relative bg-gradient-to-r from-[#e0f2fe] dark:from-gray-900 to-[#f0f9ff] dark:to-gray-950 rounded-3xl px-1 md:px-12 w-full max-w-5xl flex flex-col md:flex-row items-center gap-6 shadow-md">
 
                 {/* Image avec débordement */}
                 <div className="relative w-40 md:w-84 shrink-0">
@@ -14,10 +14,10 @@ export default function CTAWhatsApp() {
 
                 {/* Contenu texte */}
                 <div className="text-center md:text-left flex flex-col justify-center pb-4 md:pb-6">
-                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-4">
+                    <h2 className="text-xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 md:mb-4">
                         Prêt à passer à l’action ?
                     </h2>
-                    <p className="text-gray-600 text-sm mb-2 md:mb-6">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-2 md:mb-6">
                         Bénéficiez d’un accompagnement personnalisé avec un partenaire de confiance. Discutons-en sur WhatsApp dès maintenant !
                     </p>
                     <div className="w-full flex justify-center md:justify-start">

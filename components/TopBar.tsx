@@ -1,11 +1,12 @@
 export default function TopBar() {
     return (
-        <div className="bg-white px-2 md:px-5 py-1 rounded-t md:rounded-b">
+        <div className="bg-white dark:bg-black/20 px-2 md:px-5 py-1 rounded-t md:rounded-b">
             <div className="flex justify-between items-end">
-                <img src="./logo.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto" />
+                <img src="./logo.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto dark:hidden" />
+                <img src="./logo-dark.png" alt="Logo de l'entreprise Gratias Technology" className="max-h-8 md:max-h-16 w-auto hidden dark:block" />
                 <div className="flex justify-between py-0 md:py-2">
-                    <button className="btn cursor-pointer text-sm md:text-base border rounded md:rounded-xl px-2 md:px-5 py-1 md:py-2  transition">
-                        Commencer maintenant
+                    <button className="btn cursor-pointer text-sm md:text-base border rounded md:rounded-xl px-2 md:px-5 py-1 md:py-2 transition font-semibold">
+                        Commencer
                     </button>
                 </div>
             </div>
