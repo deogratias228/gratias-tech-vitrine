@@ -32,32 +32,38 @@ export default function RealisticEarningsDashboard() {
         return () => clearInterval(timer);
     }, []);
 
-    const realityData = {
+    const realityData: Record<string, {
+        winRate: number;
+        avgMonthlyReturn: number;
+        successRate: number;
+        timeToProfit: string;
+    }> = {
         cryptoTrading: {
             winRate: 23,
             avgMonthlyReturn: -12.5,
-            successfulTraders: 5,
+            successRate: 5,
             timeToProfit: "2-5 ans d'apprentissage"
         },
         dropshipping: {
             winRate: 15,
             avgMonthlyReturn: -8.3,
-            successfulBusinesses: 10,
+            successRate: 10,
             timeToProfit: "6-18 mois"
         },
         forexTrading: {
             winRate: 19,
             avgMonthlyReturn: -15.2,
-            successfulTraders: 8,
+            successRate: 8,
             timeToProfit: "3-7 ans d'expérience"
         },
         onlineCoaching: {
             winRate: 25,
             avgMonthlyReturn: 2.1,
-            successfulCoaches: 12,
+            successRate: 12,
             timeToProfit: "12-24 mois"
         }
     };
+
 
     const fakeVsReal = [
         {
@@ -266,10 +272,7 @@ export default function RealisticEarningsDashboard() {
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Réussissent vraiment:</span>
                                     <span className="font-semibold text-orange-600">
-                                        {data.successfulTraders ||
-                                            data.successfulBusinesses ||
-                                            data.successfulCoaches}
-                                        %
+                                        {data.successRate}%
                                     </span>
                                 </div>
                                 <div className="flex justify-between">
