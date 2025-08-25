@@ -2,21 +2,17 @@ import CTAWhatsApp from "@/components/CTAWhatsApp";
 import FAQ from "@/components/Faq";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import HeroCarousel, {exampleSlides} from "@/components/home/Hero";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
-import TopBar from "@/components/TopBar";
 import WhyChoose from "@/components/WhyChoose";
 
 export default function Home() {
   return (
-    <div className="">
-      <div className="w-full p-4 md:px-32">
-        <TopBar />
-      </div>
-      <div className="w-full p-0 md:px-32">
-        <Hero />
-      </div>
-      <div className="w-full p-4 md:px-28">
+    <div className="bg-blue-50 w-full">
+      <div className="items-center justify-center">
+        {/* <Hero /> */}
+        <HeroCarousel slides={exampleSlides} />
         <Services />
         <WhyChoose />
         <Testimonials />
