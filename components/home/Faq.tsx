@@ -38,9 +38,9 @@ export default function FAQ() {
     };
 
     return (
-        <section className="py-8 px-6">
-            <div className="max-w-5xl mx-auto">
-                <h2 className="text-xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-10">
+        <section className="relative py-8 md:py-12 overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-6">
+                <h2 className="text-xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-6">
                     Foire aux questions
                 </h2>
                 <div className="">

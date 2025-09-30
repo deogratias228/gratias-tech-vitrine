@@ -129,7 +129,7 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
   return (
     <section
       ref={containerRef}
-      className={`relative isolate w-full h-[80vh] min-h-[520px] overflow-hidden bg-slate-900 ${className}`}
+      className={`relative isolate w-full h-[70vh] md:h-[80vh] overflow-hidden bg-slate-900 ${className}`}
       aria-roledescription="carousel"
       aria-label="Gratias Technology hero"
       onMouseEnter={() => setIsHovering(true)}
@@ -159,47 +159,46 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
               decoding="async"
             />
             {/* Contrast overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/80" />
 
             {/* Content */}
             <div className="absolute inset-0 flex items-center">
               <div className={
-                `mx-auto w-full max-w-7xl px-6 sm:px-8 grid ${
-                  s.alignment === "right"
-                    ? "place-items-end"
-                    : s.alignment === "center"
-                      ? "place-items-center"
-                      : "place-items-start"
+                `mx-auto w-full max-w-7xl px-6 sm:px-8 grid ${s.alignment === "right"
+                  ? "place-items-end"
+                  : s.alignment === "center"
+                    ? "place-items-center"
+                    : "place-items-start"
                 }`
               }>
-                <div className="max-w-3xl text-white">
+                <div className="max-w-5xl text-white">
                   {s.subtitle && (
                     <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-wider ring-1 ring-white/20 mb-4">
                       {s.subtitle}
                     </span>
                   )}
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-tight drop-shadow">
+                  <h1 className="text-[22px] mt-12 text-center md:text-start md:text-5xl font-bold leading-tight drop-shadow">
                     {s.title}
                   </h1>
                   {s.description && (
-                    <p className="mt-4 text-base sm:text-lg md:text-xl text-white/90 max-w-2xl">
+                    <p className="mt-4 text-center md:text-start text-base md:text-xl text-white/90 max-w-3xl">
                       {s.description}
                     </p>
                   )}
 
-                  <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <div className="mt-24 md:mt-12 flex flex-wrap items-center gap-3">
                     {s.ctaPrimary && (
                       <a
-                        href={s.ctaPrimary.href}
-                        className="inline-flex items-center justify-center rounded bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 transition"
+                        href="/portfolio"
+                        className="inline-flex items-center justify-center rounded bg-blue-500 px-5 py-2 md:py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 transition"
                       >
                         {s.ctaPrimary.label}
                       </a>
                     )}
                     {s.ctaSecondary && (
                       <a
-                        href={s.ctaSecondary.href}
-                        className="inline-flex items-center justify-center rounded bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition"
+                        href="/contact"
+                        className="inline-flex items-center justify-center rounded bg-white/10 px-5 py-2 md:py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition"
                       >
                         {s.ctaSecondary.label}
                       </a>
@@ -214,11 +213,11 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
 
       {/* Arrows */}
       {total > 1 && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 sm:px-4">
+        <div className="pointer-events-none absolute inset-0 hidden md:flex items-center justify-between px-2 sm:px-4">
           <button
             aria-label="Slide précédent"
             onClick={prev}
-            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/0 md:bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white group-active:scale-95 transition">
               <path fillRule="evenodd" d="M15.78 4.22a.75.75 0 010 1.06L9.06 12l6.72 6.72a.75.75 0 11-1.06 1.06l-7.25-7.25a.75.75 0 010-1.06l7.25-7.25a.75.75 0 011.06 0z" clipRule="evenodd" />
@@ -227,7 +226,7 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
           <button
             aria-label="Slide suivant"
             onClick={next}
-            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/5 md:bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 md:focus-visible:ring-white"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white group-active:scale-95 transition">
               <path fillRule="evenodd" d="M8.22 19.78a.75.75 0 010-1.06L14.94 12 8.22 5.28a.75.75 0 011.06-1.06l7.25 7.25a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0z" clipRule="evenodd" />
@@ -260,18 +259,17 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
   )
 }
 
-// --- Example data (you can remove this and pass slides from the page) ---
-export const exampleSlides: HeroSlide[] = [
+export const heroSlides: HeroSlide[] = [
   {
     id: 1,
     title: "Construisons l’Afrique digitale, un projet à la fois.",
     subtitle: "Gratias Technology",
     description:
       "Du site vitrine aux plateformes SaaS sur‑mesure : nous transformons vos idées en solutions fiables, élégantes et évolutives.",
-    image: "/images/hero/africa-digital.jpg",
-    ctaPrimary: { label: "Demander un devis", href: "/contact" },
-    ctaSecondary: { label: "Découvrir nos solutions", href: "/solutions" },
-    alignment: "left",
+    image: "/images/home/hero/africa-digital.jpg",
+    ctaPrimary: { label: "Voir nos réalisations", href: "/portfolio" },
+    ctaSecondary: { label: "Demander un devis", href: "/contact" },
+    alignment: "center",
   },
   {
     id: 2,
@@ -279,9 +277,9 @@ export const exampleSlides: HeroSlide[] = [
     subtitle: "Qualité • Performance • Sécurité",
     description:
       "Laravel, Next.js & Tailwind au service de vos ambitions : code propre, UX soignée, déploiements maîtrisés.",
-    image: "/images/hero/saas-dashboard.jpg",
+    image: "/images/home/hero/saas-dashboard.jpg",
     ctaPrimary: { label: "Voir des cas concrets", href: "/portfolio" },
-    ctaSecondary: { label: "Parler à un expert", href: "/rdv" },
+    ctaSecondary: { label: "Demander un devis", href: "/contact" },
     alignment: "center",
   },
   {
@@ -290,24 +288,10 @@ export const exampleSlides: HeroSlide[] = [
     subtitle: "Impact business",
     description:
       "StockZoom, Surrdv et plus : des outils pragmatiques pour vos ventes, vos rendez‑vous et votre croissance.",
-    image: "/images/hero/team-collab.jpg",
-    ctaPrimary: { label: "Essayer une démo", href: "/demos" },
-    ctaSecondary: { label: "Obtenir une estimation", href: "/devis" },
-    alignment: "right",
+    image: "/images/home/hero/team-collab.jpg",
+    ctaPrimary: { label: "Portfolio", href: "/portfolio" },
+    ctaSecondary: { label: "Demander un devis", href: "/contact" },
+    alignment: "center",
   },
 ]
 
-/**
- * Example usage in a Next.js page:
- *
- * import HeroCarousel, { exampleSlides } from "@/components/HeroCarousel";
- *
- * export default function HomePage() {
- *   return (
- *     <main className="min-h-screen bg-white">
- *       <HeroCarousel slides={exampleSlides} />
- *       ...other sections...
- *     </main>
- *   );
- * }
- */

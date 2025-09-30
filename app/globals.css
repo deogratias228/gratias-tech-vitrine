@@ -20,7 +20,7 @@
     --accent: #60a5fa;
   }
 }
-  
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -34,4 +34,93 @@ body {
 
 .btn:hover {
   color: #1e40af;
+}
+
+.bg-grid-slate-100 {
+  background-image: url("data:image/svg+xml,%3csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3e%3cpath d='m 40 0 l 0 40 m -40 0 l 40 0' fill='none' stroke='%23e2e8f0' stroke-width='1'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23grid)'/%3e%3c/svg%3e");
+}
+
+/* Animation d'apparition/disparition du loader */
+.loader-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.loader-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.loader-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.loader-exit-active {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Animation personnalisée pour le spinner */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.spinner-glow {
+  animation: spin-slow 2s linear infinite, pulse-glow 2s ease-in-out infinite;
+}
+
+/* Barre de progression animée */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.progress-shimmer {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Effet de fade pour les transitions de page */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms, transform 200ms;
 }

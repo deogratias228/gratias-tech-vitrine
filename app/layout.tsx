@@ -6,6 +6,9 @@ import "./globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import GlobalLoader from "@/components/ui/GlobalLoader";
+import AdvancedLoader from "@/components/ui/AdvancedLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,8 +96,15 @@ export default function RootLayout({
       <body
         className={`${poppinsFont.variable} ${geistSans.variable} ${geistMono.variable} bg-animated antialiased`}
       >
-        <Navbar />
-        {children}
+        <AdvancedLoader>
+          <div className="h-full w-full">
+            <Navbar />
+            <div className="mt-8 pt-8 m-h-100vh">
+              {children}
+              <Footer />
+            </div>
+          </div>
+        </AdvancedLoader>
       </body>
     </html>
   );
