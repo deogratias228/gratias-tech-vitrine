@@ -1,102 +1,63 @@
 'use client';
 
-import { usePageLoader } from '@/hooks/usePageLoader';
-import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
-const LoaderSpinner = () => (
-  <div className="relative">
-    <div className="w-14 h-14 border-4 border-blue-100 rounded-full animate-spin">
-      <div className="absolute inset-2 border-4 border-transparent border-t-blue-600 rounded-full animate-spin"></div>
-    </div>
-  </div>
-);
-
-const ProgressBar = ({ progress }: { progress: number }) => (
-  <div className="w-56 h-1 bg-gray-200 rounded-full overflow-hidden">
-    <motion.div
-      className="h-full bg-gradient-to-r from-blue-600 to-purple-600"
-      initial={{ width: 0 }}
-      animate={{ width: `${progress}%` }}
-      transition={{ ease: 'easeOut', duration: 0.3 }}
-    />
-  </div>
-);
-
-interface AdvancedLoaderProps {
-  children: React.ReactNode;
-}
-
-export default function AdvancedLoader({ children }: AdvancedLoaderProps) {
-  const { isLoading, progress } = usePageLoader();
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+export default function SimpleLoader({ children }: { children: React.ReactNode }) {
   const [showLoader, setShowLoader] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  // Premier chargement
+  // Progression simple
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInitialLoad(false);
-      setShowLoader(false);
-    }, 600);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Navigations suivantes
-  useEffect(() => {
-    if (!isInitialLoad) {
-      if (isLoading) {
-        setShowLoader(true);
-      } else {
-        const timer = setTimeout(() => setShowLoader(false), 300);
-        return () => clearTimeout(timer);
-      }
+    if (showLoader) {
+      let p = 0;
+      const interval = setInterval(() => {
+        p += 10;
+        setProgress(p);
+        if (p >= 100) {
+          clearInterval(interval);
+          setTimeout(() => setShowLoader(false), 300);
+        }
+      }, 100);
+      return () => clearInterval(interval);
     }
-  }, [isLoading, isInitialLoad]);
+  }, [showLoader]);
 
   return (
     <>
       <AnimatePresence>
         {showLoader && (
           <motion.div
-            key="loader"
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-white via-blue-50 to-purple-50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="flex flex-col items-center gap-6 p-8 bg-white/80 rounded-2xl shadow-xl backdrop-blur-sm border border-white/20"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.5 }}
+            <motion.h1
+              className="text-2xl font-bold text-white mb-6 tracking-wide"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <LoaderSpinner />
+              Gratias Technology
+            </motion.h1>
 
-              <div className="text-center space-y-2">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {isInitialLoad
-                    ? 'Gratias Technology'
-                    : 'Chargement en cours'}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {isInitialLoad
-                    ? 'Innovation digitale pour votre succès'
-                    : 'Veuillez patienter un instant...'}
-                </p>
-              </div>
-
-              {!isInitialLoad && <ProgressBar progress={progress} />}
-            </motion.div>
+            <div className="w-48 h-1 bg-white/30 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-white"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ ease: "easeOut", duration: 0.3 }}
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.div
-        key="content"
         initial={{ opacity: 0 }}
         animate={{ opacity: showLoader ? 0 : 1 }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
+        transition={{ duration: 0.6 }}
       >
         {children}
       </motion.div>

@@ -41,7 +41,7 @@ body {
 }
 
 /* Animation d'apparition/disparition du loader */
-.loader-enter {
+/* .loader-enter {
   opacity: 0;
   transform: scale(0.9);
 }
@@ -61,10 +61,10 @@ body {
   opacity: 0;
   transform: scale(1.1);
   transition: opacity 300ms, transform 300ms;
-}
+} */
 
 /* Animation personnalisée pour le spinner */
-@keyframes spin-slow {
+/* @keyframes spin-slow {
   from {
     transform: rotate(0deg);
   }
@@ -84,10 +84,10 @@ body {
 
 .spinner-glow {
   animation: spin-slow 2s linear infinite, pulse-glow 2s ease-in-out infinite;
-}
+} */
 
 /* Barre de progression animée */
-@keyframes shimmer {
+/* @keyframes shimmer {
   0% {
     background-position: -200px 0;
   }
@@ -100,10 +100,10 @@ body {
   background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
   background-size: 200px 100%;
   animation: shimmer 1.5s ease-in-out infinite;
-}
+} */
 
 /* Effet de fade pour les transitions de page */
-.page-transition-enter {
+/* .page-transition-enter {
   opacity: 0;
   transform: translateY(10px);
 }
@@ -124,3 +124,15 @@ body {
   transform: translateY(-10px);
   transition: opacity 200ms, transform 200ms;
 }
+
+.bg-animated {
+  background: linear-gradient(270deg, #3b82f6, #3f33ea5d, #04404b4f);
+  background-size: 600% 600%;
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+} */
