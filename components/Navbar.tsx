@@ -55,9 +55,10 @@ export default function App() {
             onMouseLeave={() => setServicesOpen(false)}
           >
             <button
-              className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 focus:outline-none"
+              className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 focus:outline-none cursor-pointer"
               aria-haspopup="true"
               aria-expanded={servicesOpen}
+              onClick={()=> window.location.href = '/services'}
             >
               Services
               <ChevronDown className={`ml-1 w-4 h-4 transform transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />

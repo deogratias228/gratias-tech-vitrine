@@ -1,6 +1,6 @@
 // /app/services/[slug]/page.tsx
 
-import { services, Service, ServiceDetail } from '@/lib/data/services';
+import { services, Service, ServiceDetail, getServiceBySlug } from '@/lib/data/services';
 import { notFound } from 'next/navigation';
 import { Check } from 'lucide-react';
 import Link from 'next/link';
@@ -26,10 +26,11 @@ const DetailPoint: React.FC<{ detail: ServiceDetail }> = ({ detail }) => (
 );
 
 
-export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
 
-    const slug = `/services/${params.slug}`;
-    const service = services.find(s => s.href === slug);
+    const { slug } = await params;
+    // const slug = `/services/${params.slug}`;
+    const service = getServiceBySlug(slug);
 
     if (!service) {
         notFound();

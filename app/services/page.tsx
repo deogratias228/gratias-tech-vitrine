@@ -70,7 +70,7 @@ export default function ServicesPage() {
                         Contactez-nous pour une consultation gratuite et sans engagement.
                     </p>
                     <Link 
-                        href="/contact" 
+                        href="/contact?devis=true" 
                         className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition duration-300"
                     >
                         Demander un devis

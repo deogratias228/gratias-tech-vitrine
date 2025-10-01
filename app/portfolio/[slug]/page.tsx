@@ -4,12 +4,50 @@ import { getProjectContentBySlug } from '@/lib/data/project-content';
 import { notFound } from 'next/navigation';
 import { ExternalLink, Github, Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 interface ProjectPageProps {
     params: {
         slug: string;
     };
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+
+// Génération des métadonnées dynamiques pour le SEO
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
+
+    if (!project) {
+        return {
+            title: 'Projet non trouvé | Gratias Technology',
+            description: 'Ce projet n’existe pas ou n’a pas encore été publié.',
+        };
+    }
+
+    return {
+        title: `${project.title} | Gratias Technology`,
+        description: project.shortDescription,
+        keywords: project.technologies.join(', '),
+        openGraph: {
+            title: project.title,
+            description: project.shortDescription,
+            type: 'website',
+            images: [project.image],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: project.title,
+            description: project.shortDescription,
+            images: [project.image],
+        },
+    };
+}
+
 
 export async function generateStaticParams() {
     return projects.map((project) => ({
@@ -17,10 +55,13 @@ export async function generateStaticParams() {
     }));
 }
 
-const ProjectPage = ({ params }: ProjectPageProps) => {
-    const project = getProjectBySlug(params.slug);
-    const content = getProjectContentBySlug(params.slug);
-    
+const ProjectPage = async ({ params }: {
+    params: Promise<{ slug: string }>;
+}) => {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
+    const content = getProjectContentBySlug(slug);
+
     if (!project || !content) {
         notFound();
     }
@@ -29,13 +70,13 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Header avec image hero */}
             <header className="relative h-[60vh] overflow-hidden">
-                <img 
-                    src={project.image} 
+                <img
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/50" />
-                
+
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
                     <div className="max-w-4xl mx-auto">
                         {/* Breadcrumb */}
@@ -58,7 +99,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
 
                         {/* Title */}
                         <h1 className="text-5xl font-bold mb-6">{project.title}</h1>
-                        
+
                         {/* Description */}
                         <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
                             {project.shortDescription}

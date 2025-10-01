@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export function usePageLoader() {
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     let progressTimer: NodeJS.Timeout;
@@ -38,7 +37,7 @@ export function usePageLoader() {
       clearInterval(progressTimer);
       clearTimeout(finishTimer);
     };
-  }, [pathname, searchParams]);
+  }, [pathname]); // 👈 seulement pathname
 
   return { isLoading, progress };
 }

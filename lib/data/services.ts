@@ -6,6 +6,7 @@ import { LucideIcon } from 'lucide-react'; // Importez le type pour les icônes
 // Interface pour typer chaque service
 export interface Service {
     name: string;
+    slug: string;
     href: string;
     description: string;
     icon: LucideIcon; // Utiliser le type LucideIcon pour les icônes
@@ -23,6 +24,7 @@ export interface ServiceDetail {
 export const services: Service[] = [
     {
         name: "Développement Sur Mesure",
+        slug: 'developpement-sur-mesure',
         href: "/services/developpement-sur-mesure",
         description: "Création d'applications web et mobiles personnalisées, conçues pour répondre parfaitement à vos besoins métier uniques, sans les contraintes des solutions standard.",
         icon: Code,
@@ -34,6 +36,7 @@ export const services: Service[] = [
     },
     {
         name: "Visibilité Maximale",
+        slug: 'visibilite-maximale',
         href: "/services/visibilite-maximale",
         description: "Stratégies d'acquisition et d'optimisation pour que votre plateforme atteigne son audience. Nous assurons un référencement (SEO) de pointe et des performances rapides.",
         icon: TrendingUp,
@@ -45,6 +48,7 @@ export const services: Service[] = [
     },
     {
         name: "Tranquillité Absolue",
+        slug: 'tranquillite-absolue',
         href: "/services/tranquillite-absolue",
         description: "Maintenance, sécurité et support technique 24/7. Concentrez-vous sur votre business pendant que nous gérons l'infrastructure et la pérennité de votre solution.",
         icon: ShieldCheck,
@@ -61,3 +65,7 @@ export const serviceLinks = services.map(s => ({
     name: s.name,
     href: s.href,
 }));
+
+export const getServiceBySlug = (slug: string): Service | null => {
+    return services.find(service => service.slug === slug) || null;
+}
