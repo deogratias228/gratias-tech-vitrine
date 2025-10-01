@@ -96,7 +96,7 @@ export default function RootLayout({
       <body
         className={`${poppinsFont.variable} ${geistSans.variable} ${geistMono.variable} bg-animated antialiased`}
       >
-        {/* <AdvancedLoader> */}
+        <AdvancedLoader>
           <div className="h-full w-full">
             <Navbar />
             <div className="mt-8 pt-8 m-h-100vh">
@@ -104,7 +104,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </div>
-        {/* </AdvancedLoader> */}
+        </AdvancedLoader>
       </body>
     </html>
   );
