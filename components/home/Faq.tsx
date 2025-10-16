@@ -49,12 +49,12 @@ export default function FAQ() {
                             key={index}
                             className="border-b border-gray-300 overflow-hidden">
                             <button
-                                className="w-full px-1 md:px-6 py-4 flex justify-between items-center text-left text-gray-800 dark:text-gray-200 focus:outline-none cursor-pointer"
+                                className="w-full px-1 md:px-6 py-2 md:py-4 flex justify-between items-center text-left text-gray-800 dark:text-gray-200 focus:outline-none cursor-pointer"
                                 onClick={() => toggle(index)} >
 
                                 <span>
                                     <span className="text-xl md:text-5xl text-gray-500 font-bold">0{index + 1}.</span>
-                                    <span className="text-sm md:text-2xl font-bold ps-2">{faq.question}</span>
+                                    <span className="text-sm md:text-2xl font-semibold md:font-bold ps-2">{faq.question}</span>
                                 </span>
 
                                 <ChevronDown

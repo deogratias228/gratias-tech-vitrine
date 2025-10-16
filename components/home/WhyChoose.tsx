@@ -51,12 +51,14 @@ export default function WhyChooseSection() {
 
               <div className="relative z-10">
                 {/* Icône avec fond en gradient */}
-                <div className={`p-4 rounded-full inline-flex items-center justify-center mb-6 ${feature.iconBgClass}`}>
-                  {feature.icon}
+                <div className="flex items-center gap-x-4">
+                  <div className={`p-4 rounded-full inline-flex items-center justify-center mb-6 ${feature.iconBgClass}`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl md:text- lg:text-2xl font-bold text-gray-900 mb-2">{feature.title}</h3>
                 </div>
 
                 {/* Titre et description */}
-                <h3 className="text-xl md:text- lg:text-2xl font-bold text-gray-900 mb-2">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
             </div>

@@ -34,13 +34,12 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
           {testimonials.map((testi, index) => (
             <div
               key={index}
               className="border border-gray-100 dark:border-gray-900 cursor-pointer shadow-md bg-white dark:bg-gray-950 p-4 rounded-xl mb-4
-                 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl"
-              style={{ minHeight: '250px' }} // optionnel : fixe une hauteur minimum pour homogénéité
+                 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl min-h-[90px] md:min-h-[250px]"
             >
               <p className="italic mb-4 flex-grow text-gray-500">
                 <span className="text-3xl font-bold">"</span>{testi.content}

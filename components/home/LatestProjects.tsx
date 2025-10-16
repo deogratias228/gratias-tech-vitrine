@@ -42,7 +42,7 @@ const LatestProjects = () => {
     ];
 
     return (
-        <section className="relative py-20 dark:bg-gray-900">
+        <section className="relative py-10 md:py-20 dark:bg-gray-900">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Titre et CTA */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-12 text-center md:text-left">
@@ -61,7 +61,7 @@ const LatestProjects = () => {
                 </div>
 
                 {/* Grille des projets (version simplifiée) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                     {projects.slice(0, 4).map((project, index) => {
                         const IconComponent = project.icon;
                         return (
@@ -72,19 +72,19 @@ const LatestProjects = () => {
                                 onMouseLeave={() => setHoveredProject(null)}
                                 onClick={() => window.location.href = `/portfolio/${project.slug}`}
                             >
-                                <div className="relative h-48 overflow-hidden">
+                                <div className="relative h-24 md:h-48 overflow-hidden">
                                     <img
                                         src={project.image}
                                         alt={project.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                 </div>
-                                <div className="p-4">
+                                <div className="p-2 md:p-4">
                                     <div className="flex items-center gap-2 mb-2 text-sm text-gray-500 dark:text-gray-400 font-medium">
                                         <IconComponent className="w-4 h-4" />
                                         <span>{project.category}</span>
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                         {project.title}
                                     </h3>
                                 </div>
