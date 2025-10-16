@@ -1,5 +1,3 @@
-// /app/services/page.tsx
-
 import Link from 'next/link';
 import { services, Service } from '@/lib/data/services';
 import { ArrowRight } from 'lucide-react';
@@ -10,7 +8,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
 
     return (
         <Link 
-            href={service.href} 
+            href={`/services/${service.slug}`} 
             className="group block p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 transform hover:-translate-y-1"
         >
             <div className="flex items-start mb-4">
@@ -57,7 +55,7 @@ export default function ServicesPage() {
                 {/* Grille des Services */}
                 <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     {services.map((service) => (
-                        <ServiceCard key={service.href} service={service} />
+                        <ServiceCard key={service.slug} service={service} />
                     ))}
                 </div>
                 

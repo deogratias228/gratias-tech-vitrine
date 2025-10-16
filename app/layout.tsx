@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import GlobalLoader from "@/components/ui/GlobalLoader";
 import AdvancedLoader from "@/components/ui/AdvancedLoader";
 
 const geistSans = Geist({
@@ -54,7 +53,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://deowoblesse.tech/og-image.jpg", // remplace par ta vraie image Open Graph
+        url: "https://deowoblesse.tech/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Gratias Technology - création de sites web modernes",
@@ -66,14 +65,9 @@ export const metadata: Metadata = {
     title: "Gratias Technology - Création de sites web modernes et mobiles",
     description:
       "Votre partenaire pour des solutions digitales modernes, accessibles et performantes.",
-    creator: "@gratias_tech", // Remplace par ton vrai handle
+    creator: "@gratias_tech",
     images: ["https://deowoblesse.tech/og-image.jpg"],
   },
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-  //   { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  // ],
-  // viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   icons: {
     icon: "/favicon.ico",
@@ -90,8 +84,6 @@ export default function RootLayout({
   return (
     <html lang="fr" /* pour mieux cibler ton public francophone */>
       <head>
-        {/* Si tu as besoin de meta supplémentaires spécifiques, tu peux les rajouter ici */}
-        {/* Par exemple, charset, meta refresh, etc., mais Next.js gère déjà cela */}
       </head>
       <body
         className={`${poppinsFont.variable} ${geistSans.variable} ${geistMono.variable} bg-animated antialiased`}

@@ -8,7 +8,7 @@ import Link from 'next/link';
 // Fonction pour générer les params statiques (nécessaire pour l'App Router)
 export async function generateStaticParams() {
     return services.map((service) => ({
-        slug: service.href.split('/').pop(), // Extrait le slug de l'URL
+        slug: service.slug,
     }));
 }
 

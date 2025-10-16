@@ -27,7 +27,7 @@ export default function ServicesSection() {
                 { name: "API & intégrations tierces", highlight: false }
             ],
             cta: "Découvrir nos projets",
-            link: "/services/developpement-web",
+            link: "/services/developpement-sur-mesure",
             badge: "Le plus populaire"
         },
         {
@@ -52,7 +52,7 @@ export default function ServicesSection() {
                 { name: "Analytics & reporting", highlight: false }
             ],
             cta: "Booster ma visibilité",
-            link: "/services/presence-en-ligne",
+            link: "/services/visibilite-maximale",
             badge: null
         },
         {
@@ -77,7 +77,7 @@ export default function ServicesSection() {
                 { name: "Mises à jour sécurité", highlight: false }
             ],
             cta: "Sécuriser mon site",
-            link: "/services/maintenance",
+            link: "/services/tranquillite-absolue",
             badge: null
         }
     ];
