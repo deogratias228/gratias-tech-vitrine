@@ -17,7 +17,7 @@ export default function Home() {
         <WhyChoose />
         <LatestProjects />
         <Testimonials />
-        <FAQ />
+        {/* <FAQ /> */}
       </div>
     </div>
   );

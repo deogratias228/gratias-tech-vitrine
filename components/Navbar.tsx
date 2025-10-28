@@ -16,13 +16,13 @@ export default function App() {
   ];
 
   const serviceLinks = [
-    { name: "Développement Sur Mesure", href: "services/developpement-sur-mesure" },
-    { name: "Visibilité Maximale", href: "services/visibilite-maximale" },
-    { name: "Tranquillité Absolue", href: "services/tranquillite-absolue" },
+    { name: "Développement Web Sur Mesure", href: "/services/developpement-web-sur-mesure" },
+    { name: "Sites Web WordPress Clés en Main", href: "/services/solutions-wordpress" },
+    { name: "Applications Mobiles & PWA", href: "/services/applications-mobiles" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-lg dark:bg-gray-900 transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4 md:px-8 py-2 md:py-4 flex items-center justify-between">
         {/* Logo Section */}
         <a href="/" className="text-2xl font-bold flex items-center">
@@ -64,10 +64,10 @@ export default function App() {
               <ChevronDown className={`ml-1 w-4 h-4 transform transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />
             </button>
             {servicesOpen && (
-              <ul className="absolute left-1/2 text-base -translate-x-1/2 w-[200px] bg-white dark:bg-gray-800 font-[400] border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl z-20 overflow-hidden">
+              <ul className="absolute left-1/2 text-base -translate-x-1/2 w-[200px] bg-white dark:bg-gray-800 font-[400] border border-gray-50 dark:border-gray-700 rounded shadow-xl z-20 overflow-hidden">
                 {serviceLinks.map((service) => (
                   <li key={service.name}>
-                    <a href={`/${service.href}`} className="block px-2 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                    <a href={`${service.href}`} className="block px-2 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                       {service.name}
                     </a>
                   </li>
@@ -119,7 +119,7 @@ export default function App() {
                 <ul className="mt-2 ml-4 space-y-2 font-normal">
                   {serviceLinks.map((service) => (
                     <li key={service.name}>
-                      <a href={`/${service.href}`} className="block hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
+                      <a href={`${service.href}`} className="block hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
                         {service.name}
                       </a>
                     </li>

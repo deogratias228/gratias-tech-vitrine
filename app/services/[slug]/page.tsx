@@ -1,87 +1,122 @@
-// /app/services/[slug]/page.tsx
+import { notFound } from "next/navigation";
+import { getServiceBySlug, services } from "@/lib/data/services";
+import { Check, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import FAQ from "@/components/home/Faq";
+import { serviceFaqs } from "@/lib/data/faqs";
 
-import { services, Service, ServiceDetail, getServiceBySlug } from '@/lib/data/services';
-import { notFound } from 'next/navigation';
-import { Check } from 'lucide-react';
-import Link from 'next/link';
-
-// Fonction pour générer les params statiques (nécessaire pour l'App Router)
 export async function generateStaticParams() {
-    return services.map((service) => ({
-        slug: service.slug,
-    }));
+  return services.map((service) => ({ slug: service.slug }));
 }
 
-// Composant pour afficher un point clé
-const DetailPoint: React.FC<{ detail: ServiceDetail }> = ({ detail }) => (
-    <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0 mt-1">
-            <Check className="w-6 h-6 text-blue-500" />
-        </div>
-        <div>
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white">{detail.title}</h4>
-            <p className="mt-1 text-gray-600 dark:text-gray-400">{detail.description}</p>
-        </div>
-    </div>
-);
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+  if (!service) notFound();
 
+  const Icon = service.icon;
 
-export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-
-    const { slug } = await params;
-    // const slug = `/services/${params.slug}`;
-    const service = getServiceBySlug(slug);
-
-    if (!service) {
-        notFound();
-    }
-
-    const Icon = service.icon;
-
-    return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white py-16 sm:py-24">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                {/* En-tête du service */}
-                <header className="text-center pb-12">
-                    <div className="inline-block p-4 bg-blue-100 rounded-full text-blue-600 dark:bg-blue-900/40 dark:text-blue-400 mb-6">
-                        <Icon className="w-8 h-8" />
-                    </div>
-                    <h1 className="text-5xl font-extrabold mb-4">{service.name}</h1>
-                    <p className="text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                        {service.description}
-                    </p>
-                </header>
-
-                <hr className="my-12 border-gray-200 dark:border-gray-700" />
-
-                {/* Section des détails */}
-                <section className="grid md:grid-cols-2 gap-12">
-                    <div className="space-y-10">
-                        {service.details.slice(0, 2).map((detail, index) => (
-                            <DetailPoint key={index} detail={detail} />
-                        ))}
-                    </div>
-                    <div className="space-y-10">
-                        {service.details.slice(2).map((detail, index) => (
-                            <DetailPoint key={index} detail={detail} />
-                        ))}
-                    </div>
-                </section>
-
-                {/* Vous pouvez ajouter ici plus de contenu spécifique si vous en avez besoin */}
-
-                <div className="mt-20 text-center">
-                    <Link
-                        href={`/contact?service=${encodeURIComponent(service.name)}`}
-                        className="inline-flex items-center px-3 md:px-10 py-4 border border-transparent text-base md:text-lg font-medium rounded-xl shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105"
-                    >
-                        Démarrer la discussion sur ce service
-                    </Link>
-
-                </div>
-
+  return (
+    <main className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+      {/* HERO */}
+      <section className="py-24 text-center bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-blue-100 text-blue-600 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
+              <Icon className="w-10 h-10" />
             </div>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">{service.name}</h1>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mx-auto">
+            {service.fullDescription}
+          </p>
+          <div className="mt-10">
+            <Link
+              href={service.cta.link}
+              className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              {service.cta.text}
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
-    );
+      </section>
+
+      {/* POINTS FORTS */}
+      <section className="py-10 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Pourquoi choisir ce service ?</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {service.highlights.map((item, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-gray-900 shadow-md rounded-2xl p-6 border border-gray-100 dark:border-gray-700 text-center"
+              >
+                <Check className="mx-auto text-blue-500 mb-4 w-6 h-6" />
+                <p className="font-medium text-gray-700 dark:text-gray-300">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DÉTAILS */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {service.details.map((d, i) => (
+              <div key={i} className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-6 rounded-2xl shadow-sm">
+                <h3 className="text-xl font-semibold mb-3 text-center">{d.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{d.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ÉTAPES */}
+      <section className="py-10 bg-blue-50 dark:bg-gray-800/60">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-12">Notre processus de travail</h2>
+          <div className="grid md:grid-cols-4 gap-4">
+            {service.process.map((step) => (
+              <div key={step.number} className="bg-white dark:bg-gray-900 rounded-2xl p-2 shadow-sm border border-gray-100 dark:border-gray-700">
+                <div className="text-4xl font-bold text-blue-600 mb-4 mt-4">{step.number}</div>
+                <h4 className="font-semibold mb-2">{step.title}</h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ faqs={serviceFaqs[slug] || []}></FAQ>
+      {/* <section className="py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-10">Questions fréquentes</h2>
+          <div className="space-y-6">
+            {service.faq.map((item, i) => (
+              <div key={i} className="p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">{item.question}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* CTA FINALE */}
+      <section className="py-10 text-center bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à démarrer votre projet ?</h2>
+        <Link
+          href={service.cta.link}
+          className="inline-flex items-center gap-3 bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300"
+        >
+          {service.cta.text}
+          <ArrowRight className="w-5 h-5" />
+        </Link>
+      </section>
+    </main>
+  );
 }

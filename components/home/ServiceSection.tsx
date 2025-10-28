@@ -6,81 +6,55 @@ export default function ServicesSection() {
 
     const services = [
         {
-            id: 'dev',
-            icon: (
-                <div className="relative w-18 h-18">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl opacity-20 blur-lg"></div>
-                    <div className="relative flex items-center justify-center h-20 w-20 bg-gradient-to-br from-blue-400 via-blue-600 to-blue-400 p-4 rounded-xl">
-                        <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                    </div>
-                </div>
-            ),
-            title: "Développement Sur Mesure",
-            subtitle: "Solutions web & applications",
-            description: "Transformons vos idées en solutions digitales performantes. Du concept à la mise en ligne, nous créons des expériences utilisateur exceptionnelles qui génèrent des résultats.",
+            id: 'devweb',
+            title: "Développement Web Sur Mesure",
+            subtitle: "Sites et applications modernes pour votre entreprise",
+            description:
+                "Nous créons des sites web rapides, sécurisés et adaptés à vos besoins. Idéal pour les entreprises qui veulent une solution digitale performante et évolutive.",
             features: [
-                { name: "Sites vitrines haute performance", highlight: true },
-                { name: "E-commerce & paiements sécurisés", highlight: false },
-                { name: "Applications métier & dashboards", highlight: false },
-                { name: "API & intégrations tierces", highlight: false }
+                { name: "Sites vitrines professionnels", highlight: true },
+                { name: "Plateformes e-commerce personnalisées", highlight: false },
+                { name: "Applications web sur mesure", highlight: false },
+                { name: "Maintenance et support", highlight: false }
             ],
-            cta: "Découvrir nos projets",
-            link: "/services/developpement-sur-mesure",
+            cta: "Découvrir le service",
+            link: "/services/developpement-web-sur-mesure",
+            badge: "Le plus puissant"
+        },
+        {
+            id: 'wordpress',
+            title: "Sites WordPress Clés en Main",
+            subtitle: "Rapide, professionnel et facile à gérer",
+            description:
+                "Obtenez un site WordPress moderne, optimisé et prêt à l’emploi. Une solution idéale pour PME, indépendants et portefeuilles en ligne.",
+            features: [
+                { name: "Création de sites vitrines WordPress", highlight: true },
+                { name: "Boutiques en ligne WooCommerce", highlight: false },
+                { name: "Optimisation SEO et performance", highlight: false },
+                { name: "Formation et assistance", highlight: false }
+            ],
+            cta: "Créer mon site WordPress",
+            link: "/services/solutions-wordpress",
             badge: "Le plus populaire"
         },
         {
-            id: 'presence',
-            icon: (
-                <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl opacity-20 blur-lg"></div>
-                    <div className="relative flex items-center justify-center h-20 w-20 bg-gradient-to-br from-emerald-500 to-teal-600 p-4 rounded-xl">
-                        <svg className="w-16 h-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                        </svg>
-                    </div>
-                </div>
-            ),
-            title: "Visibilité Maximale",
-            subtitle: "Présence en ligne optimisée",
-            description: "Dominez votre marché local et digital. Nous optimisons votre présence en ligne pour attirer plus de clients qualifiés et développer votre chiffre d'affaires.",
+            id: 'mobile',
+            title: "Applications Mobiles & PWA",
+            subtitle: "Présence mobile fluide et performante",
+            description:
+                "Développez une application mobile ou une Progressive Web App pour offrir une expérience utilisateur optimale sur tous les appareils.",
             features: [
-                { name: "Google Business Profile optimisé", highlight: true },
-                { name: "Stratégie SEO local", highlight: false },
-                { name: "Gestion réseaux sociaux", highlight: false },
-                { name: "Analytics & reporting", highlight: false }
+                { name: "Progressive Web Apps (PWA)", highlight: true },
+                { name: "Applications mobiles hybrides", highlight: false },
+                { name: "Conversion de site en application", highlight: false },
+                { name: "Suivi et maintenance", highlight: false }
             ],
-            cta: "Booster ma visibilité",
-            link: "/services/visibilite-maximale",
-            badge: null
-        },
-        {
-            id: 'maintenance',
-            icon: (
-                <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl opacity-20 blur-lg"></div>
-                    <div className="relative flex items-center justify-center h-20 w-20 bg-gradient-to-br from-orange-500 to-red-600 p-4 rounded-xl">
-                        <svg className="w-16 h-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                    </div>
-                </div>
-            ),
-            title: "Tranquillité Absolue",
-            subtitle: "Maintenance & support 24/7",
-            description: "Concentrez-vous sur votre métier, nous nous occupons de la technique. Support réactif, sécurité renforcée et performances optimales garanties.",
-            features: [
-                { name: "Monitoring temps réel", highlight: true },
-                { name: "Sauvegardes automatiques", highlight: false },
-                { name: "Support prioritaire", highlight: false },
-                { name: "Mises à jour sécurité", highlight: false }
-            ],
-            cta: "Sécuriser mon site",
-            link: "/services/tranquillite-absolue",
-            badge: null
+            cta: "Créer mon application mobile",
+            link: "/services/applications-mobiles",
+            badge: "Le plus innovant"
         }
     ];
+
 
     return (
         <section className="relative py-8 md:py-12 overflow-hidden">
@@ -128,15 +102,15 @@ export default function ServicesSection() {
                             <div className="relative h-full bg-white rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col">
                                 {/* Hover effect background */}
                                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ${service.id === 'dev' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
-                                        service.id === 'presence' ? 'bg-gradient-to-br from-emerald-500 to-teal-600' :
-                                            'bg-gradient-to-br from-orange-500 to-red-600'
+                                    service.id === 'presence' ? 'bg-gradient-to-br from-emerald-500 to-teal-600' :
+                                        'bg-gradient-to-br from-orange-500 to-red-600'
                                     }`}></div>
 
                                 <div className="relative p-4 md:p-8 flex flex-col h-full">
                                     {/* Icon */}
-                                    <div className="mb-4 md:mb-6 w-24 h-24 flex-shrink-0">
+                                    {/* <div className="mb-4 md:mb-6 w-24 h-24 flex-shrink-0">
                                         {service.icon}
-                                    </div>
+                                    </div> */}
 
                                     {/* Content */}
                                     <div className="mb-6 flex-grow">
@@ -171,7 +145,8 @@ export default function ServicesSection() {
                                             href={service.link}
                                             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors group/link"
                                         >
-                                            {service.cta}
+                                            {/* {service.cta} */}
+                                            En savoir plus
                                             <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>

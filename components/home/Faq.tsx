@@ -1,76 +1,49 @@
-// components/FAQ.tsx
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
-    {
-        question: "Combien de temps faut-il pour créer un site vitrine ?",
-        answer: "En général entre 3 et 7 jours ouvrés selon la complexité. Tout est transparent dès le début.",
-    },
-    {
-        question: "Est-ce que je peux vous contacter sur WhatsApp directement ?",
-        answer: "Oui, bien sûr ! C’est l’un de nos canaux privilégiés pour échanger simplement et rapidement.",
-    },
-    {
-        question: "Proposez-vous des paiements en plusieurs fois ?",
-        answer: "Oui, nous proposons des facilités selon le type de projet. Parlons-en ensemble.",
-    },
-    {
-        question: "Et si je n’ai aucune idée du design que je veux ?",
-        answer: "Pas de souci ! On vous accompagne avec des exemples et des propositions claires et personnalisées.",
-    },
-    {
-        question: "Est-ce que vous faites aussi les sites e-commerce ou les applications ?",
-        answer: "Oui. Nous réalisons des boutiques en ligne, des plateformes SaaS et des solutions sur mesure.",
-    },
-    {
-        question: "Y a-t-il un suivi après la livraison ?",
-        answer: "Oui ! Vous bénéficiez d’un support pendant une période définie, avec possibilité d’assistance étendue sur demande.",
-    },
-];
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-export default function FAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FAQ({ faqs }: { faqs: FAQItem[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const toggle = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
-    const toggle = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+  if (!faqs || faqs.length === 0) return null;
 
-    return (
-        <section className="relative py-8 md:py-12 overflow-hidden">
-            <div className="relative max-w-7xl mx-auto px-6">
-                <h2 className="text-xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-6">
-                    Foire aux questions
-                </h2>
-                <div className="">
-                    {faqs.map((faq, index) => (
-                        <div
-                            key={index}
-                            className="border-b border-gray-300 overflow-hidden">
-                            <button
-                                className="w-full px-1 md:px-6 py-2 md:py-4 flex justify-between items-center text-left text-gray-800 dark:text-gray-200 focus:outline-none cursor-pointer"
-                                onClick={() => toggle(index)} >
-
-                                <span>
-                                    <span className="text-xl md:text-5xl text-gray-500 font-bold">0{index + 1}.</span>
-                                    <span className="text-sm md:text-2xl font-semibold md:font-bold ps-2">{faq.question}</span>
-                                </span>
-
-                                <ChevronDown
-                                    className={`w-5 h-5 transition-transform ${openIndex === index ? "rotate-180" : ""}`} />
-                            </button>
-                            {openIndex === index && (
-                                <div className="px-2 md:px-8 pb-4 text-gray-600 dark:text-gray-400 text-sm md:text-xl">
-                                    <div className="pl-4 border-s-4 border-s-gray-400">
-                                        {faq.answer}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+  return (
+    <section className="relative py-8 md:py-12 overflow-hidden">
+      <div className="relative max-w-5xl mx-auto px-6">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white text-center mb-6">
+          Questions fréquentes
+        </h2>
+        <div>
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-gray-300 overflow-hidden">
+              <button
+                className="w-full px-1 md:px-6 py-3 md:py-5 flex justify-between items-center text-left text-gray-800 dark:text-gray-200"
+                onClick={() => toggle(index)}
+              >
+                <span>
+                  <span className="text-lg md:text-2xl font-semibold">{faq.question}</span>
+                </span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {openIndex === index && (
+                <div className="px-2 md:px-8 pb-4 text-gray-600 dark:text-gray-400 text-sm md:text-base border-s-4 border-s-gray-400">
+                  {faq.answer}
                 </div>
+              )}
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

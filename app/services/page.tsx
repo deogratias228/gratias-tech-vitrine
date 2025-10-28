@@ -23,7 +23,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
             </h2>
             
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-                {service.description}
+                {service.fullDescription}
             </p>
             
             {/* Lien d'appel à l'action */}
