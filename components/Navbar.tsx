@@ -17,8 +17,8 @@ export default function App() {
 
   const serviceLinks = [
     { name: "Développement Web Sur Mesure", href: "/services/developpement-web-sur-mesure" },
-    { name: "Sites Web WordPress Clés en Main", href: "/services/solutions-wordpress" },
-    { name: "Applications Mobiles & PWA", href: "/services/applications-mobiles" },
+    { name: "Création de Sites Web WordPress", href: "/services/solutions-wordpress" },
+    { name: "Développement d'Applications Mobiles & PWA", href: "/services/applications-mobiles" },
   ];
 
   return (

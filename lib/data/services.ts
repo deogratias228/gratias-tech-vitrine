@@ -102,7 +102,7 @@ export const services: Service[] = [
 
     // --- Service WordPress ---
     {
-        name: "Sites Web WordPress Clés en Main",
+        name: "Création de Sites WordPress",
         slug: "solutions-wordpress",
         href: "/services/solutions-wordpress",
         shortDescription:
@@ -169,7 +169,7 @@ export const services: Service[] = [
 
     // --- Service Mobile ---
     {
-        name: "Applications Mobiles & PWA",
+        name: "Développement d'Applications Mobiles & PWA",
         slug: "applications-mobiles",
         href: "/services/applications-mobiles",
         shortDescription:
