@@ -23,7 +23,7 @@ export default function ServicesSection() {
         },
         {
             id: 'wordpress',
-            title: "Sites WordPress Clés en Main",
+            title: "Création de Sites WordPress",
             subtitle: "Rapide, professionnel et facile à gérer",
             description:
                 "Obtenez un site WordPress moderne, optimisé et prêt à l’emploi. Une solution idéale pour PME, indépendants et portefeuilles en ligne.",
@@ -39,7 +39,7 @@ export default function ServicesSection() {
         },
         {
             id: 'mobile',
-            title: "Applications Mobiles & PWA",
+            title: "Création d'Apps Mobiles & PWA",
             subtitle: "Présence mobile fluide et performante",
             description:
                 "Développez une application mobile ou une Progressive Web App pour offrir une expérience utilisateur optimale sur tous les appareils.",
