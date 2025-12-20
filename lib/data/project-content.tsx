@@ -1,6 +1,6 @@
 // /lib/data/project-content.tsx
 import React from 'react';
-import { CheckCircle, AlertTriangle, TrendingUp, Users, Database, Smartphone, Monitor, Zap, Shield, Clock, FileText, ShoppingCart, Calendar, BarChart3, Utensils, BookOpen } from 'lucide-react';
+import { CheckCircle, AlertTriangle, TrendingUp, Users, Database, Smartphone, Monitor, Zap, Shield, Clock, FileText, ShoppingCart, Calendar, BarChart3, Utensils, BookOpen, MessageCircle, Package } from 'lucide-react';
 
 // Composants réutilisables pour les projets
 const ProjectSection: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -43,13 +43,13 @@ const TechStack: React.FC<{ technologies: { name: string; category: string; colo
         {['Frontend', 'Backend', 'Database', 'Outils'].map(category => {
             const techs = technologies.filter(tech => tech.category === category);
             if (techs.length === 0) return null;
-            
+
             return (
                 <div key={category}>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-3">{category}</h4>
                     <div className="flex flex-wrap gap-3">
                         {techs.map((tech, index) => (
-                            <span 
+                            <span
                                 key={index}
                                 className={`px-4 py-2 rounded-full text-sm font-medium ${tech.color}`}
                             >
@@ -76,8 +76,8 @@ const MetricCard: React.FC<{ value: string; label: string; icon: React.ReactNode
 const Screenshot: React.FC<{ src: string; alt: string; caption?: string }> = ({ src, alt, caption }) => (
     <div className="mb-8">
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
-            <img 
-                src={src} 
+            <img
+                src={src}
                 alt={alt}
                 className="w-full rounded-lg shadow-md"
             />
@@ -108,6 +108,133 @@ const Challenge: React.FC<{ title: string; description: string; solution: string
 
 // Contenu détaillé des projets
 export const projectDetails: Record<string, React.ReactNode> = {
+    "espoir-ecommerce": (
+        <div>
+            <ProjectSection>
+                <SectionTitle icon={<ShoppingCart className="w-8 h-8" />}>
+                    Vue d'ensemble
+                </SectionTitle>
+                <Paragraph>
+                    <strong>Espoir E-Commerce</strong> est une plateforme e-commerce conçue pour un vendeur de
+                    matériel <strong>sportif et médical</strong>, avec un objectif clair :
+                    <strong> maximiser les conversions sans paiement en ligne</strong>.
+                    Le site permet aux clients de parcourir le catalogue, ajouter un ou plusieurs produits
+                    au panier, puis finaliser leur commande via <strong>WhatsApp</strong> avec un message
+                    pré-rempli contenant le récapitulatif.
+                </Paragraph>
+
+                <div className="grid md:grid-cols-3 gap-6 mt-8">
+                    <MetricCard
+                        value="100%"
+                        label="Commandes via WhatsApp"
+                        icon={<MessageCircle className="w-6 h-6" />}
+                    />
+                    <MetricCard
+                        value="2x"
+                        label="Taux de conversion"
+                        icon={<TrendingUp className="w-6 h-6" />}
+                    />
+                    <MetricCard
+                        value="200+"
+                        label="Produits catalogués"
+                        icon={<Package className="w-6 h-6" />}
+                    />
+                </div>
+            </ProjectSection>
+
+            <ProjectSection>
+                <SectionTitle>Fonctionnalités clés</SectionTitle>
+                <FeatureGrid>
+                    <FeatureCard
+                        icon={<ShoppingCart className="w-5 h-5" />}
+                        title="Panier intelligent"
+                        description="Ajout de produits, quantités multiples et génération automatique du résumé de commande"
+                    />
+                    <FeatureCard
+                        icon={<MessageCircle className="w-5 h-5" />}
+                        title="Commande WhatsApp"
+                        description="Redirection vers WhatsApp avec message pré-rempli prêt à envoyer"
+                    />
+                    <FeatureCard
+                        icon={<Monitor className="w-5 h-5" />}
+                        title="Catalogue optimisé"
+                        description="Navigation fluide par catégories sportives et médicales"
+                    />
+                    <FeatureCard
+                        icon={<Smartphone className="w-5 h-5" />}
+                        title="Mobile first"
+                        description="Expérience pensée prioritairement pour les utilisateurs mobiles"
+                    />
+                    <FeatureCard
+                        icon={<Zap className="w-5 h-5" />}
+                        title="Chargement rapide"
+                        description="Optimisation des performances pour connexions à faible débit"
+                    />
+                    <FeatureCard
+                        icon={<Shield className="w-5 h-5" />}
+                        title="Simplicité & fiabilité"
+                        description="Aucun paiement en ligne, zéro friction pour le client final"
+                    />
+                </FeatureGrid>
+            </ProjectSection>
+
+            <ProjectSection>
+                <SectionTitle>Stack technique</SectionTitle>
+                <TechStack
+                    technologies={[
+                        { name: "Blade Templates", category: "Frontend", color: "bg-red-100 text-red-800" },
+                        { name: "TailwindCSS", category: "Frontend", color: "bg-green-100 text-green-800" },
+                        { name: "JavaScript", category: "Frontend", color: "bg-yellow-100 text-yellow-800" },
+                        { name: "Laravel 10", category: "Backend", color: "bg-red-100 text-red-800" },
+                        { name: "PHP 8.2", category: "Backend", color: "bg-purple-100 text-purple-800" },
+                        { name: "MySQL", category: "Database", color: "bg-blue-100 text-blue-800" },
+                        { name: "WhatsApp API (deep link)", category: "Intégration", color: "bg-green-100 text-green-800" },
+                        { name: "Git", category: "Outils", color: "bg-orange-100 text-orange-800" }
+                    ]}
+                />
+            </ProjectSection>
+
+            <ProjectSection>
+                <SectionTitle>Défis techniques relevés</SectionTitle>
+                <Challenge
+                    title="Absence de paiement en ligne"
+                    description="Le client ne souhaitait pas intégrer de solution de paiement classique."
+                    solution="Mise en place d'un tunnel de commande via WhatsApp avec message structuré et clair."
+                />
+                <Challenge
+                    title="Conversion mobile"
+                    description="La majorité des visiteurs utilisent un smartphone avec une connexion limitée."
+                    solution="Approche mobile-first, images légères et interactions simplifiées."
+                />
+                <Challenge
+                    title="Clarté des commandes"
+                    description="Éviter les messages confus lors des commandes multi-produits."
+                    solution="Génération automatique d'un résumé détaillé : produits, quantités et total."
+                />
+            </ProjectSection>
+
+            <ProjectSection>
+                <SectionTitle>Résultats et impact</SectionTitle>
+                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
+                    <div className="flex items-start gap-3">
+                        <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400 mt-1 flex-shrink-0" />
+                        <div>
+                            <h4 className="font-semibold text-green-900 dark:text-green-100 mb-3">
+                                Impact business
+                            </h4>
+                            <ul className="space-y-2 text-green-800 dark:text-green-200">
+                                <li>• <strong>Augmentation significative</strong> des demandes clients</li>
+                                <li>• <strong>Processus de commande simplifié</strong> pour les clients non bancarisés</li>
+                                <li>• <strong>Adoption rapide</strong> par la clientèle locale</li>
+                                <li>• <strong>Zéro friction</strong> entre découverte et prise de contact</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </ProjectSection>
+        </div>
+    ),
+
     "stockzoom-inventory-management": (
         <div>
             <ProjectSection>
@@ -115,26 +242,26 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Vue d'ensemble
                 </SectionTitle>
                 <Paragraph>
-                    <strong>StockZoom</strong> est une application web complète de gestion d'inventaire développée 
-                    pour optimiser les flux de marchandises d'une entreprise cliente. Cette solution permet de 
-                    suivre en temps réel les stocks, générer des rapports analytiques et automatiser les 
+                    <strong>StockZoom</strong> est une application web complète de gestion d'inventaire développée
+                    pour optimiser les flux de marchandises d'une entreprise cliente. Cette solution permet de
+                    suivre en temps réel les stocks, générer des rapports analytiques et automatiser les
                     processus de réapprovisionnement.
                 </Paragraph>
-                
+
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="98%" 
-                        label="Réduction erreurs stock" 
+                    <MetricCard
+                        value="98%"
+                        label="Réduction erreurs stock"
                         icon={<TrendingUp className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="15+" 
-                        label="Utilisateurs simultanés" 
+                    <MetricCard
+                        value="15+"
+                        label="Utilisateurs simultanés"
                         icon={<Users className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="5000+" 
-                        label="Articles référencés" 
+                    <MetricCard
+                        value="5000+"
+                        label="Articles référencés"
                         icon={<Database className="w-6 h-6" />}
                     />
                 </div>
@@ -143,32 +270,32 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités clés</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Monitor className="w-5 h-5" />}
                         title="Dashboard temps réel"
                         description="Visualisation instantanée des niveaux de stock avec alertes automatiques"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="Analytics avancés"
                         description="Rapports détaillés sur les mouvements, tendances et prévisions"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Users className="w-5 h-5" />}
                         title="Multi-utilisateurs"
                         description="Gestion des rôles et permissions avec historique des actions"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Smartphone className="w-5 h-5" />}
                         title="Interface responsive"
                         description="Accès optimisé sur tous les appareils (mobile, tablette, desktop)"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Automatisation"
                         description="Processus automatisés de réapprovisionnement et notifications"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Shield className="w-5 h-5" />}
                         title="Sécurité renforcée"
                         description="Authentification sécurisée et sauvegarde automatique des données"
@@ -193,17 +320,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
 
             <ProjectSection>
                 <SectionTitle>Défis techniques relevés</SectionTitle>
-                <Challenge 
+                <Challenge
                     title="Performance des requêtes complexes"
                     description="Avec plus de 5000 articles et des milliers de mouvements quotidiens, les requêtes devenaient lentes."
                     solution="Implémentation d'un système de cache Redis et optimisation des requêtes avec des index appropriés."
                 />
-                <Challenge 
+                <Challenge
                     title="Synchronisation temps réel"
                     description="Plusieurs utilisateurs modifiant les stocks simultanément créaient des conflits de données."
                     solution="Utilisation de Laravel Echo avec WebSockets pour les mises à jour en temps réel et gestion des transactions."
                 />
-                <Challenge 
+                <Challenge
                     title="Gestion des seuils d'alerte"
                     description="Les alertes de stock bas devaient être personnalisables et fiables pour éviter les ruptures."
                     solution="Système d'alertes intelligent basé sur l'historique de consommation et les tendances saisonnières."
@@ -237,25 +364,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     À propos du projet
                 </SectionTitle>
                 <Paragraph>
-                    <strong>QuickCV Generator</strong> est un générateur de CV moderne qui permet de créer 
-                    des CV professionnels en quelques minutes. L'outil propose plusieurs templates 
+                    <strong>QuickCV Generator</strong> est un générateur de CV moderne qui permet de créer
+                    des CV professionnels en quelques minutes. L'outil propose plusieurs templates
                     élégants, une prévisualisation en temps réel et un export PDF de qualité.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="2min" 
-                        label="Temps de création moyen" 
+                    <MetricCard
+                        value="2min"
+                        label="Temps de création moyen"
                         icon={<Clock className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="8" 
-                        label="Templates disponibles" 
+                    <MetricCard
+                        value="8"
+                        label="Templates disponibles"
                         icon={<Monitor className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="100%" 
-                        label="Gratuit et open-source" 
+                    <MetricCard
+                        value="100%"
+                        label="Gratuit et open-source"
                         icon={<CheckCircle className="w-6 h-6" />}
                     />
                 </div>
@@ -264,17 +391,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Monitor className="w-5 h-5" />}
                         title="Templates modernes"
                         description="8 designs professionnels adaptés à différents secteurs d'activité"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Prévisualisation live"
                         description="Voir les modifications en temps réel pendant la saisie"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Smartphone className="w-5 h-5" />}
                         title="Export PDF optimisé"
                         description="Génération PDF haute qualité pour impression ou envoi"
@@ -296,12 +423,12 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Interface utilisateur</SectionTitle>
                 <Paragraph>
-                    L'interface a été conçue pour être intuitive et accessible. Un formulaire guidé 
-                    permet de saisir les informations étape par étape, tandis que la prévisualisation 
+                    L'interface a été conçue pour être intuitive et accessible. Un formulaire guidé
+                    permet de saisir les informations étape par étape, tandis que la prévisualisation
                     se met à jour automatiquement.
                 </Paragraph>
 
-                <Screenshot 
+                <Screenshot
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23f8fafc'/%3E%3Crect x='50' y='50' width='300' height='400' fill='white' stroke='%23e2e8f0' stroke-width='2' rx='8'/%3E%3Crect x='450' y='50' width='300' height='400' fill='white' stroke='%23e2e8f0' stroke-width='2' rx='8'/%3E%3Ctext x='200' y='30' font-family='Arial' font-size='16' font-weight='bold' text-anchor='middle' fill='%23374151'%3EFormulaire%3C/text%3E%3Ctext x='600' y='30' font-family='Arial' font-size='16' font-weight='bold' text-anchor='middle' fill='%23374151'%3EPrévisualisation%3C/text%3E%3C/svg%3E"
                     alt="Interface QuickCV Generator"
                     caption="Vue d'ensemble de l'interface : formulaire de saisie et prévisualisation temps réel"
@@ -317,8 +444,8 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     TaskBoard Simple
                 </SectionTitle>
                 <Paragraph>
-                    Un tableau Kanban minimaliste développé en React pour organiser ses tâches 
-                    personnelles. Fonctionnalités drag & drop, sauvegarde locale et interface 
+                    Un tableau Kanban minimaliste développé en React pour organiser ses tâches
+                    personnelles. Fonctionnalités drag & drop, sauvegarde locale et interface
                     claire et épurée.
                 </Paragraph>
             </ProjectSection>
@@ -326,17 +453,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités principales</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Drag & Drop"
                         description="Déplacez vos tâches entre les colonnes par simple glisser-déposer"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Database className="w-5 h-5" />}
                         title="Sauvegarde auto"
                         description="Vos données sont automatiquement sauvées dans le navigateur"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Monitor className="w-5 h-5" />}
                         title="Mode sombre"
                         description="Interface adaptable selon vos préférences visuelles"
@@ -363,25 +490,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Site vitrine Gratias Technology
                 </SectionTitle>
                 <Paragraph>
-                    Site vitrine moderne et élégant développé avec Next.js pour présenter 
-                    les services et réalisations de Gratias Technology. Design responsive, 
+                    Site vitrine moderne et élégant développé avec Next.js pour présenter
+                    les services et réalisations de Gratias Technology. Design responsive,
                     animations fluides et optimisations SEO avancées.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="98/100" 
-                        label="Score Lighthouse" 
+                    <MetricCard
+                        value="98/100"
+                        label="Score Lighthouse"
                         icon={<TrendingUp className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="< 2s" 
-                        label="Temps de chargement" 
+                    <MetricCard
+                        value="< 2s"
+                        label="Temps de chargement"
                         icon={<Zap className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="100%" 
-                        label="Responsive design" 
+                    <MetricCard
+                        value="100%"
+                        label="Responsive design"
                         icon={<Smartphone className="w-6 h-6" />}
                     />
                 </div>
@@ -390,17 +517,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités avancées</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Performance optimale"
                         description="Optimisations avancées avec Next.js : SSG, image optimization, code splitting"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="SEO avancé"
                         description="Métadonnées dynamiques, sitemap automatique, structured data"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Monitor className="w-5 h-5" />}
                         title="Animations fluides"
                         description="Micro-interactions et animations CSS pour une UX premium"
@@ -422,12 +549,12 @@ export const projectDetails: Record<string, React.ReactNode> = {
 
             <ProjectSection>
                 <SectionTitle>Optimisations mises en place</SectionTitle>
-                <Challenge 
+                <Challenge
                     title="Performance et Core Web Vitals"
                     description="Nécessité d'atteindre des scores Lighthouse parfaits pour le SEO et l'expérience utilisateur."
                     solution="Optimisation images avec Next.js Image, lazy loading, préchargement des ressources critiques et minification avancée."
                 />
-                <Challenge 
+                <Challenge
                     title="SEO technique avancé"
                     description="Besoin de positioning optimal sur les moteurs de recherche dans un secteur concurrentiel."
                     solution="Métadonnées dynamiques, Open Graph, données structurées JSON-LD et optimisation du contenu."
@@ -443,25 +570,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     E-commerce Dashboard
                 </SectionTitle>
                 <Paragraph>
-                    Tableau de bord complet pour la gestion d'une boutique en ligne, intégrant 
-                    la gestion des produits, commandes, clients et analytics de vente. Solution 
+                    Tableau de bord complet pour la gestion d'une boutique en ligne, intégrant
+                    la gestion des produits, commandes, clients et analytics de vente. Solution
                     développée pour une startup e-commerce en forte croissance.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="500+" 
-                        label="Commandes/jour gérées" 
+                    <MetricCard
+                        value="500+"
+                        label="Commandes/jour gérées"
                         icon={<TrendingUp className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="10K+" 
-                        label="Produits référencés" 
+                    <MetricCard
+                        value="10K+"
+                        label="Produits référencés"
                         icon={<Database className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="99.9%" 
-                        label="Uptime des paiements" 
+                    <MetricCard
+                        value="99.9%"
+                        label="Uptime des paiements"
                         icon={<Shield className="w-6 h-6" />}
                     />
                 </div>
@@ -470,32 +597,32 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités principales</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<ShoppingCart className="w-5 h-5" />}
                         title="Gestion des commandes"
                         description="Traitement automatisé des commandes avec workflow personnalisable"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="Analytics de vente"
                         description="Tableaux de bord interactifs avec métriques en temps réel"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Shield className="w-5 h-5" />}
                         title="Paiements sécurisés"
                         description="Intégration Stripe avec gestion des remboursements automatisée"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Users className="w-5 h-5" />}
                         title="CRM intégré"
                         description="Gestion clients avec historique d'achat et segmentation"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Database className="w-5 h-5" />}
                         title="Gestion d'inventaire"
                         description="Suivi stock en temps réel avec alertes de réapprovisionnement"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Smartphone className="w-5 h-5" />}
                         title="Interface responsive"
                         description="Dashboard optimisé pour tous les appareils"
@@ -520,12 +647,12 @@ export const projectDetails: Record<string, React.ReactNode> = {
 
             <ProjectSection>
                 <SectionTitle>Défis techniques</SectionTitle>
-                <Challenge 
+                <Challenge
                     title="Scalabilité des paiements"
                     description="Gestion de pics de trafic importants lors des campagnes promotionnelles."
                     solution="Architecture microservices avec mise en queue Redis et load balancing automatique."
                 />
-                <Challenge 
+                <Challenge
                     title="Synchronisation des données"
                     description="Maintenir la cohérence entre stock, commandes et paiements en temps réel."
                     solution="Implémentation d'un système d'événements avec PostgreSQL et WebSockets."
@@ -541,25 +668,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Système de Réservation
                 </SectionTitle>
                 <Paragraph>
-                    Plateforme complète de réservation en ligne développée pour un cabinet médical. 
-                    Interface intuitive permettant aux patients de prendre rendez-vous et aux 
+                    Plateforme complète de réservation en ligne développée pour un cabinet médical.
+                    Interface intuitive permettant aux patients de prendre rendez-vous et aux
                     professionnels de gérer leur planning efficacement.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="200+" 
-                        label="RDV/semaine" 
+                    <MetricCard
+                        value="200+"
+                        label="RDV/semaine"
                         icon={<Calendar className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="5min" 
-                        label="Temps de réservation" 
+                    <MetricCard
+                        value="5min"
+                        label="Temps de réservation"
                         icon={<Clock className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="95%" 
-                        label="Taux de satisfaction" 
+                    <MetricCard
+                        value="95%"
+                        label="Taux de satisfaction"
                         icon={<Users className="w-6 h-6" />}
                     />
                 </div>
@@ -568,17 +695,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Calendar className="w-5 h-5" />}
                         title="Calendrier interactif"
                         description="Interface drag & drop pour gérer les créneaux et plannings"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Notifications temps réel"
                         description="Alertes instantanées via Pusher pour les nouvelles réservations"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Users className="w-5 h-5" />}
                         title="Multi-services"
                         description="Gestion de différents types de consultations et praticiens"
@@ -606,25 +733,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Finance Tracker Mobile
                 </SectionTitle>
                 <Paragraph>
-                    Application mobile native développée en React Native pour le suivi des 
-                    finances personnelles. Interface moderne avec graphiques interactifs et 
+                    Application mobile native développée en React Native pour le suivi des
+                    finances personnelles. Interface moderne avec graphiques interactifs et
                     synchronisation cloud sécurisée.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="iOS + Android" 
-                        label="Plateformes supportées" 
+                    <MetricCard
+                        value="iOS + Android"
+                        label="Plateformes supportées"
                         icon={<Smartphone className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="4.8/5" 
-                        label="Note utilisateurs" 
+                    <MetricCard
+                        value="4.8/5"
+                        label="Note utilisateurs"
                         icon={<Users className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="256-bit" 
-                        label="Chiffrement données" 
+                    <MetricCard
+                        value="256-bit"
+                        label="Chiffrement données"
                         icon={<Shield className="w-6 h-6" />}
                     />
                 </div>
@@ -633,17 +760,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="Suivi des dépenses"
                         description="Catégorisation automatique et saisie rapide des transactions"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<BarChart3 className="w-5 h-5" />}
                         title="Graphiques avancés"
                         description="Visualisation des données avec Chart.js et animations fluides"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Zap className="w-5 h-5" />}
                         title="Notifications smart"
                         description="Alertes personnalisées pour budgets et objectifs d'épargne"
@@ -672,25 +799,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Blog CMS sur mesure
                 </SectionTitle>
                 <Paragraph>
-                    Système de gestion de contenu développé spécifiquement pour un magazine en ligne. 
-                    Interface d'édition moderne avec prévisualisation en temps réel et workflow 
+                    Système de gestion de contenu développé spécifiquement pour un magazine en ligne.
+                    Interface d'édition moderne avec prévisualisation en temps réel et workflow
                     de publication avancé.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="50+" 
-                        label="Articles/mois publiés" 
+                    <MetricCard
+                        value="50+"
+                        label="Articles/mois publiés"
                         icon={<FileText className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="5" 
-                        label="Rédacteurs simultanés" 
+                    <MetricCard
+                        value="5"
+                        label="Rédacteurs simultanés"
                         icon={<Users className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="99.9%" 
-                        label="Disponibilité" 
+                    <MetricCard
+                        value="99.9%"
+                        label="Disponibilité"
                         icon={<Monitor className="w-6 h-6" />}
                     />
                 </div>
@@ -699,17 +826,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités CMS</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<FileText className="w-5 h-5" />}
                         title="Éditeur WYSIWYG"
                         description="Interface d'édition riche avec blocs de contenu modulaires"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="SEO intégré"
                         description="Optimisation automatique et suggestions SEO en temps réel"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Users className="w-5 h-5" />}
                         title="Multi-auteurs"
                         description="Workflow de validation avec rôles et permissions granulaires"
@@ -736,25 +863,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Restaurant POS System
                 </SectionTitle>
                 <Paragraph>
-                    Point de vente moderne développé pour une chaîne de restaurants. Interface 
-                    tactile optimisée, gestion des tables en temps réel et intégration complète 
+                    Point de vente moderne développé pour une chaîne de restaurants. Interface
+                    tactile optimisée, gestion des tables en temps réel et intégration complète
                     avec la cuisine et la facturation.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="300+" 
-                        label="Commandes/jour" 
+                    <MetricCard
+                        value="300+"
+                        label="Commandes/jour"
                         icon={<ShoppingCart className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="8" 
-                        label="Restaurants connectés" 
+                    <MetricCard
+                        value="8"
+                        label="Restaurants connectés"
                         icon={<Users className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="2s" 
-                        label="Temps de commande" 
+                    <MetricCard
+                        value="2s"
+                        label="Temps de commande"
                         icon={<Clock className="w-6 h-6" />}
                     />
                 </div>
@@ -763,17 +890,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités POS</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Smartphone className="w-5 h-5" />}
                         title="Interface tactile"
                         description="Design optimisé pour tablettes avec interactions gestuelles"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Users className="w-5 h-5" />}
                         title="Gestion des tables"
                         description="Plan de salle interactif avec statut en temps réel"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<FileText className="w-5 h-5" />}
                         title="Facturation automatisée"
                         description="Génération de factures et intégration comptable"
@@ -801,25 +928,25 @@ export const projectDetails: Record<string, React.ReactNode> = {
                     Plateforme E-learning
                 </SectionTitle>
                 <Paragraph>
-                    Plateforme d'apprentissage en ligne complète développée pour un institut de 
-                    formation. Cours vidéo HD, quiz interactifs et suivi détaillé des progrès 
+                    Plateforme d'apprentissage en ligne complète développée pour un institut de
+                    formation. Cours vidéo HD, quiz interactifs et suivi détaillé des progrès
                     des apprenants avec certificats automatisés.
                 </Paragraph>
 
                 <div className="grid md:grid-cols-3 gap-6 mt-8">
-                    <MetricCard 
-                        value="500+" 
-                        label="Étudiants actifs" 
+                    <MetricCard
+                        value="500+"
+                        label="Étudiants actifs"
                         icon={<Users className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="50h" 
-                        label="Contenu vidéo" 
+                    <MetricCard
+                        value="50h"
+                        label="Contenu vidéo"
                         icon={<Monitor className="w-6 h-6" />}
                     />
-                    <MetricCard 
-                        value="85%" 
-                        label="Taux de completion" 
+                    <MetricCard
+                        value="85%"
+                        label="Taux de completion"
                         icon={<TrendingUp className="w-6 h-6" />}
                     />
                 </div>
@@ -828,17 +955,17 @@ export const projectDetails: Record<string, React.ReactNode> = {
             <ProjectSection>
                 <SectionTitle>Fonctionnalités pédagogiques</SectionTitle>
                 <FeatureGrid>
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<Monitor className="w-5 h-5" />}
                         title="Vidéos HD streaming"
                         description="Lecteur vidéo adaptatif avec sous-titres et vitesse variable"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<CheckCircle className="w-5 h-5" />}
                         title="Quiz interactifs"
                         description="Évaluations en temps réel avec feedback immédiat"
                     />
-                    <FeatureCard 
+                    <FeatureCard
                         icon={<TrendingUp className="w-5 h-5" />}
                         title="Suivi de progression"
                         description="Analytics détaillés pour étudiants et formateurs"
@@ -860,12 +987,12 @@ export const projectDetails: Record<string, React.ReactNode> = {
 
             <ProjectSection>
                 <SectionTitle>Défis techniques</SectionTitle>
-                <Challenge 
+                <Challenge
                     title="Streaming vidéo optimisé"
                     description="Livraison de contenu vidéo HD à grande échelle avec latence minimale."
                     solution="CDN AWS CloudFront avec transcodage automatique et streaming adaptatif."
                 />
-                <Challenge 
+                <Challenge
                     title="Suivi de progression"
                     description="Tracking précis du temps passé et des interactions utilisateur."
                     solution="Système d'événements en temps réel avec analytics PostgreSQL."

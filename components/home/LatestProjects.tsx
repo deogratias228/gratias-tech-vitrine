@@ -66,7 +66,7 @@ export default function LatestProjects() {
             title: "Espoir E-Commerce",
             category: "Plateforme E-commerce",
             image:
-                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Cdefs%3E%3ClinearGradient id='primary' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230256D1'/%3E%3Cstop offset='100%25' stop-color='%234F46E5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23primary)'/%3E%3Cg fill='white' opacity='0.15'%3E%3Crect x='40' y='60' width='320' height='24' rx='6'/%3E%3Crect x='40' y='110' width='260' height='20' rx='6'/%3E%3Crect x='40' y='160' width='300' height='20' rx='6'/%3E%3C/g%3E%3C/svg%3E",
+                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Cdefs%3E%3ClinearGradient id='primary' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='100%25' stop-color='%2310B981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23primary)'/%3E%3Cg fill='white' opacity='0.15'%3E%3Crect x='40' y='60' width='320' height='24' rx='6'/%3E%3Crect x='40' y='110' width='260' height='20' rx='6'/%3E%3Crect x='40' y='160' width='300' height='20' rx='6'/%3E%3C/g%3E%3C/svg%3E",
             icon: Code,
             highlight: true,
         },

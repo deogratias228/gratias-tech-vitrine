@@ -1,4 +1,3 @@
-// /app/portfolio/[slug]/page.tsx
 import { getProjectBySlug, projects } from '@/lib/data/projects';
 import { getProjectContentBySlug } from '@/lib/data/project-content';
 import { notFound } from 'next/navigation';

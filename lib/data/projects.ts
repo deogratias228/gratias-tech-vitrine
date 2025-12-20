@@ -18,88 +18,129 @@ export interface Project {
     githubUrl?: string;
 }
 
+import {
+    Package,
+    Users,
+    Globe,
+    ShoppingCart,
+    MessageCircle,
+} from "lucide-react";
+
 export const projects: Project[] = [
+    {
+        id: 0,
+        slug: "espoir-ecommerce",
+        title: "Espoir E-Commerce",
+        category: "Site E-commerce",
+        shortDescription:
+            "Site e-commerce orienté conversion avec commande directe via WhatsApp. Les clients ajoutent des produits au panier puis finalisent leur commande par discussion.",
+        image:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='espoir' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2316A34A'/%3E%3Cstop offset='100%25' stop-color='%23065F46'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23espoir)'/%3E%3C/svg%3E",
+        technologies: ["Laravel", "Blade", "TailwindCSS", "JavaScript"],
+        keyFeatures: [
+            "Panier dynamique",
+            "Commande via WhatsApp",
+            "Catalogue sport & médical",
+        ],
+        icon: "MessageCircle",
+        color: "green",
+        status: "completed",
+        client: "Espoir Médical",
+        duration: "2 mois",
+        year: 2025,
+        demoUrl: "https://espoir-medical.com",
+    },
+
     {
         id: 1,
         slug: "stockzoom-inventory-management",
         title: "StockZoom",
         category: "Application Web",
-        shortDescription: "Solution complète de gestion de stock avec analytics temps réel.",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='stockzoom' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234F46E5'/%3E%3Cstop offset='100%25' style='stop-color:%237C3AED'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23stockzoom)'/%3E%3Cg fill='white' opacity='0.1'%3E%3Crect x='20' y='40' width='360' height='20' rx='4'/%3E%3Crect x='20' y='80' width='280' height='20' rx='4'/%3E%3Crect x='20' y='120' width='320' height='20' rx='4'/%3E%3Crect x='20' y='160' width='240' height='20' rx='4'/%3E%3Crect x='20' y='200' width='300' height='20' rx='4'/%3E%3C/g%3E%3Cg fill='white' opacity='0.3'%3E%3Ccircle cx='60' cy='250' r='8'/%3E%3Ccircle cx='100' cy='240' r='8'/%3E%3Ccircle cx='140' cy='245' r='8'/%3E%3Ccircle cx='180' cy='235' r='8'/%3E%3Ccircle cx='220' cy='250' r='8'/%3E%3C/g%3E%3C/svg%3E",
+        shortDescription:
+            "Solution complète de gestion de stock avec analytics en temps réel, pensée pour les PME africaines.",
+        image:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%234F46E5'/%3E%3C/svg%3E",
         technologies: ["Laravel", "Blade", "TailwindCSS", "MySQL"],
-        keyFeatures: ["Gestion temps réel", "Analytics avancés", "Multi-utilisateurs"],
+        keyFeatures: [
+            "Gestion temps réel",
+            "Tableaux de bord",
+            "Multi-utilisateurs",
+        ],
         icon: "Package",
-        color: "from-blue-500 to-purple-600",
+        color: "blue",
         status: "completed",
-        client: "Entreprise privée",
         duration: "3 mois",
         year: 2025,
-        demoUrl: "https://stockzoom.deowoblesse.tech/"
+        githubUrl: "https://github.com/deogratias228/stock-zoom",
     },
+
     {
         id: 2,
         slug: "quickcv-generator",
         title: "QuickCV Generator",
         category: "Outil Web",
-        shortDescription: "Créez des CV professionnels en quelques clics.",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='quickcv' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310B981'/%3E%3Cstop offset='100%25' style='stop-color:%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23quickcv)'/%3E%3Cg fill='white' opacity='0.2'%3E%3Crect x='50' y='40' width='300' height='220' rx='8'/%3E%3Cg opacity='0.6'%3E%3Crect x='70' y='60' width='60' height='60' rx='30'/%3E%3Crect x='150' y='70' width='180' height='8' rx='4'/%3E%3Crect x='150' y='90' width='120' height='8' rx='4'/%3E%3Crect x='70' y='140' width='260' height='4' rx='2'/%3E%3Crect x='70' y='160' width='200' height='4' rx='2'/%3E%3Crect x='70' y='180' width='240' height='4' rx='2'/%3E%3Crect x='70' y='210' width='180' height='4' rx='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E",
-        technologies: ["HTML", "CSS", "JavaScript", "PDF.js"],
-        keyFeatures: ["Templates modernes", "Export PDF", "Interface intuitive"],
+        shortDescription:
+            "Générateur de CV modernes avec export PDF rapide et interface intuitive.",
+        image:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%2310B981'/%3E%3C/svg%3E",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        keyFeatures: [
+            "Templates modernes",
+            "Export PDF",
+            "Rapide et simple",
+        ],
         icon: "Users",
-        color: "from-emerald-500 to-cyan-500",
+        color: "emerald",
         status: "completed",
         duration: "1 mois",
         year: 2025,
-        demoUrl: "https://quickcv.deowoblesse.tech",
-        githubUrl: "https://github.com/deogratias228/quickcv-generator"
+        demoUrl: "https://quickcv.gratias.com",
+        githubUrl: "https://github.com/deogratias228/quickcv-generator",
     },
+
     {
         id: 3,
         slug: "gratias-technology-website",
         title: "Gratias Technology",
-        category: "Site Vitrine",
-        shortDescription: "Site vitrine moderne présentant nos services et réalisations.",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='gratias' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366F1'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23gratias)'/%3E%3Cg fill='white' opacity='0.1'%3E%3Crect x='0' y='20' width='400' height='60'/%3E%3Crect x='40' y='100' width='320' height='40'/%3E%3Crect x='40' y='160' width='120' height='80' rx='8'/%3E%3Crect x='180' y='160' width='120' height='80' rx='8'/%3E%3Crect x='320' y='160' width='40' height='80' rx='8'/%3E%3C/g%3E%3Cg fill='white' opacity='0.3'%3E%3Ctext x='50' y='45' font-family='Arial, sans-serif' font-size='16' font-weight='bold'%3EGRATIAS%3C/text%3E%3Ccircle cx='80' cy='200' r='12'/%3E%3Ccircle cx='240' cy='200' r='12'/%3E%3Crect x='300' y='40' width='80' height='20' rx='10'/%3E%3C/g%3E%3C/svg%3E",
-        technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-        keyFeatures: ["Design responsive", "SEO optimisé", "Performance A+"],
+        category: "Site vitrine",
+        shortDescription:
+            "Site vitrine moderne présentant les services, projets et la vision de l'entreprise.",
+        image:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%236366F1'/%3E%3C/svg%3E",
+        technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+        keyFeatures: [
+            "Design premium",
+            "SEO optimisé",
+            "Performance élevée",
+        ],
         icon: "Globe",
-        color: "from-indigo-500 to-purple-600",
+        color: "indigo",
         status: "completed",
         duration: "1 mois",
         year: 2025,
-        demoUrl: "https://deowoblesse.tech"
+        demoUrl: "https://deowoblesse.tech",
     },
+
     {
         id: 4,
         slug: "ecommerce-dashboard",
         title: "E-commerce Dashboard",
         category: "Application Web",
-        shortDescription: "Tableau de bord complet pour gérer une boutique en ligne.",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='ecommerce' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2306B6D4'/%3E%3Cstop offset='100%25' style='stop-color:%233B82F6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23ecommerce)'/%3E%3Cg fill='white' opacity='0.2'%3E%3Crect x='20' y='20' width='80' height='260' rx='8'/%3E%3Crect x='120' y='20' width='260' height='60' rx='8'/%3E%3Crect x='120' y='100' width='120' height='80' rx='8'/%3E%3Crect x='260' y='100' width='120' height='80' rx='8'/%3E%3Crect x='120' y='200' width='260' height='80' rx='8'/%3E%3C/g%3E%3Cg fill='white' opacity='0.4'%3E%3Ccircle cx='150' cy='140' r='15'/%3E%3Ccircle cx='310' cy='140' r='15'/%3E%3Crect x='140' y='220' width='220' height='8' rx='4'/%3E%3Crect x='140' y='240' width='180' height='8' rx='4'/%3E%3Crect x='140' y='260' width='200' height='8' rx='4'/%3E%3C/g%3E%3C/svg%3E",
-        technologies: ["React", "Node.js", "PostgreSQL", "Stripe API"],
-        keyFeatures: ["Gestion commandes", "Analytics ventes", "Paiements sécurisés"],
+        shortDescription:
+            "Dashboard pour piloter une activité e-commerce : ventes, commandes et paiements.",
+        image:
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%2306B6D4'/%3E%3C/svg%3E",
+        technologies: ["React", "Node.js", "PostgreSQL"],
+        keyFeatures: [
+            "Suivi des ventes",
+            "Gestion commandes",
+            "Statistiques",
+        ],
         icon: "ShoppingCart",
-        color: "from-cyan-500 to-blue-600",
+        color: "cyan",
         status: "in-progress",
-        client: "Startup e-commerce",
-        duration: "4 mois",
-        year: 2025
-    },
-    {
-        id: 5,
-        slug: "taskboard-simple",
-        title: "TaskBoard Simple",
-        category: "Productivité",
-        shortDescription: "Tableau Kanban minimaliste pour organiser vos tâches personnelles.",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='taskboard' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F59E0B'/%3E%3Cstop offset='100%25' style='stop-color:%23EF4444'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23taskboard)'/%3E%3Cg fill='white' opacity='0.2'%3E%3Crect x='20' y='50' width='110' height='200' rx='8'/%3E%3Crect x='145' y='50' width='110' height='200' rx='8'/%3E%3Crect x='270' y='50' width='110' height='200' rx='8'/%3E%3C/g%3E%3Cg fill='white' opacity='0.4'%3E%3Crect x='30' y='80' width='90' height='30' rx='4'/%3E%3Crect x='30' y='120' width='90' height='30' rx='4'/%3E%3Crect x='155' y='80' width='90' height='30' rx='4'/%3E%3Crect x='280' y='80' width='90' height='30' rx='4'/%3E%3Crect x='280' y='120' width='90' height='30' rx='4'/%3E%3C/g%3E%3C/svg%3E",
-        technologies: ["React", "TailwindCSS", "DnD Kit", "LocalStorage"],
-        keyFeatures: ["Drag & Drop", "Sauvegarde auto", "Mode sombre"],
-        icon: "Calendar",
-        color: "from-amber-500 to-red-500",
-        status: "in-progress",
-        duration: "2 semaines",
+        duration: "En cours",
         year: 2025,
-        // githubUrl: "https://github.com/gratias-technology/taskboard"
     },
     // {
     //     id: 6,
