@@ -1,138 +1,200 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+"use client"
 
-/**
- * HeroCarousel – production‑ready, dependency‑free carousel for Next.js + Tailwind
- *
- * Highlights
- * - Autoplay (pause on hover, focus & when tab is hidden)
- * - Keyboard navigation (← →), swipe on touch
- * - Bullets + arrows + progress bar
- * - Prefers‑reduced‑motion respected
- * - Accessible: roles, aria‑labels, buttons, focus states
- * - Responsive layout with overlay gradient for contrast
- *
- * Usage (Next.js):
- * 1) Drop this component in your app (e.g., components/HeroCarousel.tsx)
- * 2) Ensure Tailwind is configured. Place <HeroCarousel slides={slides}/> in your page.
- */
+import React, { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+
+/* ============================
+   Types
+============================ */
 
 export type HeroSlide = {
   id: number | string
   title: string
   subtitle?: string
   description?: string
-  image: string // Public URL (e.g., /images/hero/slide1.jpg)
+  image: string
   ctaPrimary?: { label: string; href: string }
   ctaSecondary?: { label: string; href: string }
   alignment?: "left" | "center" | "right"
-};
+}
 
 type Props = {
   slides: HeroSlide[]
-  autoPlayMs?: number // default 5000
+  autoPlayMs?: number
   className?: string
-};
+}
 
-export default function HeroCarousel({ slides, autoPlayMs = 5000, className = "" }: Props) {
+/* ============================
+   Motion variants
+============================ */
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.35,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+}
+
+/* ============================
+   Component
+============================ */
+
+export default function HeroCarousel({
+  slides,
+  autoPlayMs = 5000,
+  className = "",
+}: Props) {
   const [index, setIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isInteracting, setIsInteracting] = useState(false)
+
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const touchStartX = useRef<number | null>(null)
   const progressRef = useRef<HTMLDivElement | null>(null)
+  const touchStartX = useRef<number | null>(null)
 
   const total = slides.length
-  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-  // Auto‑advance
-  useEffect(() => {
-    if (prefersReducedMotion || isHovering || isFocused || isInteracting || total <= 1) return
-
-    let active = true
-    const tick = () => {
-      if (!active) return
-      setIndex((i) => (i + 1) % total)
-    }
-
-    const id = setInterval(tick, autoPlayMs)
-    return () => {
-      active = false
-      clearInterval(id)
-    }
-  }, [autoPlayMs, prefersReducedMotion, isHovering, isFocused, isInteracting, total])
-
-  // Pause when tab hidden
-  useEffect(() => {
-    const onVisibility = () => setIsInteracting(document.hidden)
-    document.addEventListener("visibilitychange", onVisibility)
-    return () => document.removeEventListener("visibilitychange", onVisibility)
-  }, [])
-
-  // Keyboard nav
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!containerRef.current) return
-      if (!containerRef.current.contains(document.activeElement)) return
-      if (e.key === "ArrowRight") {
-        e.preventDefault()
-        next()
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault()
-        prev()
-      }
-    }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [])
+  /* ============================
+     Helpers
+  ============================ */
 
   const go = (i: number) => setIndex(((i % total) + total) % total)
   const next = () => go(index + 1)
   const prev = () => go(index - 1)
 
-  // Touch swipe
+  /* ============================
+     Autoplay
+  ============================ */
+
+  useEffect(() => {
+    if (
+      prefersReducedMotion ||
+      isHovering ||
+      isFocused ||
+      isInteracting ||
+      total <= 1
+    )
+      return
+
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % total)
+    }, autoPlayMs)
+
+    return () => clearInterval(id)
+  }, [
+    autoPlayMs,
+    prefersReducedMotion,
+    isHovering,
+    isFocused,
+    isInteracting,
+    total,
+  ])
+
+  /* Pause when tab hidden */
+  useEffect(() => {
+    const onVisibility = () => setIsInteracting(document.hidden)
+    document.addEventListener("visibilitychange", onVisibility)
+    return () =>
+      document.removeEventListener("visibilitychange", onVisibility)
+  }, [])
+
+  /* Keyboard navigation */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!containerRef.current) return
+      if (!containerRef.current.contains(document.activeElement)) return
+
+      if (e.key === "ArrowRight") next()
+      if (e.key === "ArrowLeft") prev()
+    }
+
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [index])
+
+  /* ============================
+     Touch swipe
+  ============================ */
+
   const onTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
     touchStartX.current = e.touches[0].clientX
   }
+
   const onTouchMove: React.TouchEventHandler<HTMLDivElement> = (e) => {
     if (touchStartX.current == null) return
     const diff = e.touches[0].clientX - touchStartX.current
+
     if (Math.abs(diff) > 60) {
       diff > 0 ? prev() : next()
       touchStartX.current = null
     }
   }
-  const onTouchEnd: React.TouchEventHandler<HTMLDivElement> = () => {
+
+  const onTouchEnd = () => {
     touchStartX.current = null
   }
 
-  // Progress bar animation
+  /* ============================
+     Progress bar
+  ============================ */
+
   useEffect(() => {
     if (!progressRef.current) return
-    if (prefersReducedMotion || isHovering || isFocused || isInteracting) {
+
+    if (
+      prefersReducedMotion ||
+      isHovering ||
+      isFocused ||
+      isInteracting
+    ) {
       progressRef.current.style.transition = "none"
       progressRef.current.style.width = "0%"
       return
     }
+
     progressRef.current.style.transition = "none"
     progressRef.current.style.width = "0%"
+
     requestAnimationFrame(() => {
       if (!progressRef.current) return
-      // trigger reflow then animate
       void progressRef.current.offsetWidth
       progressRef.current.style.transition = `width ${autoPlayMs}ms linear`
       progressRef.current.style.width = "100%"
     })
-  }, [index, autoPlayMs, prefersReducedMotion, isHovering, isFocused, isInteracting])
+  }, [
+    index,
+    autoPlayMs,
+    prefersReducedMotion,
+    isHovering,
+    isFocused,
+    isInteracting,
+  ])
+
+  /* ============================
+     Render
+  ============================ */
 
   return (
     <section
       ref={containerRef}
-      className={`relative isolate w-full h-[70vh] md:h-[80vh] overflow-hidden bg-slate-900 ${className}`}
+      className={`relative isolate h-[70vh] md:h-[80vh] w-full overflow-hidden bg-slate-900 ${className}`}
       aria-roledescription="carousel"
-      aria-label="Gratias Technology hero"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onFocusCapture={() => setIsFocused(true)}
@@ -144,101 +206,106 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
       {/* Slides */}
       <div className="absolute inset-0">
         {slides.map((s, i) => (
-          <div
+          <motion.div
             key={s.id}
-            className={`absolute inset-0 transition-opacity duration-700 ${i === index ? "opacity-100" : "opacity-0"}`}
-            role={i === index ? "group" : undefined}
-            aria-roledescription={i === index ? "slide" : undefined}
-            aria-label={i === index ? `${i + 1} / ${total}` : undefined}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{
+              opacity: i === index ? 1 : 0,
+              scale: i === index ? 1 : 1.02,
+            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="absolute inset-0"
           >
             <img
               src={s.image}
-              alt="Hero background"
+              alt=""
               className="h-full w-full object-cover"
               loading={i === 0 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : undefined}
-              decoding="async"
             />
-            {/* Contrast overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/80" />
+
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/80"
+            />
 
             {/* Content */}
             <div className="absolute inset-0 flex items-center">
-              <div className={
-                `mx-auto w-full max-w-7xl px-6 sm:px-8 grid ${s.alignment === "right"
-                  ? "place-items-end"
-                  : s.alignment === "center"
-                    ? "place-items-center"
-                    : "place-items-start"
-                }`
-              }>
-                <div className="max-w-5xl text-white">
+              <div
+                className={`mx-auto w-full max-w-7xl px-6 sm:px-8 grid ${s.alignment === "right"
+                    ? "place-items-end"
+                    : s.alignment === "center"
+                      ? "place-items-center"
+                      : "place-items-start"
+                  }`}
+              >
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate={i === index ? "visible" : "hidden"}
+                  className="max-w-5xl text-white"
+                >
                   {s.subtitle && (
-                    <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-wider ring-1 ring-white/20 mb-4">
+                    <motion.span
+                      variants={itemVariants}
+                      className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-wider ring-1 ring-white/20 mb-4"
+                    >
                       {s.subtitle}
-                    </span>
+                    </motion.span>
                   )}
-                  <h1 className="text-[22px] mt-12 text-center md:text-start md:text-5xl font-bold leading-tight drop-shadow">
+
+                  <motion.h1
+                    variants={itemVariants}
+                    className="mt-10 text-[22px] md:text-5xl font-bold leading-tight"
+                  >
                     {s.title}
-                  </h1>
+                  </motion.h1>
+
                   {s.description && (
                     <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6, duration: 1.2 }}
-                      className="mt-4 text-center md:text-start text-base md:text-xl text-white/90 max-w-3xl">
+                      variants={itemVariants}
+                      className="mt-4 text-base md:text-xl text-white/90 max-w-3xl"
+                    >
                       {s.description}
                     </motion.p>
                   )}
 
-                  <div className="mt-24 md:mt-12 flex flex-wrap items-center gap-3">
+                  <motion.div
+                    variants={itemVariants}
+                    className="mt-12 flex flex-wrap gap-3"
+                  >
                     {s.ctaPrimary && (
-                      <a
-                        href="/portfolio"
-                        className="inline-flex items-center justify-center rounded bg-blue-500 px-5 py-2 md:py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 transition"
+                      <motion.a
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        href={s.ctaPrimary.href}
+                        className="rounded bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 hover:bg-blue-600"
                       >
                         {s.ctaPrimary.label}
-                      </a>
+                      </motion.a>
                     )}
+
                     {s.ctaSecondary && (
-                      <a
-                        href="/contact"
-                        className="inline-flex items-center justify-center rounded bg-white/10 px-5 py-2 md:py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition"
+                      <motion.a
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        href={s.ctaSecondary.href}
+                        className="rounded bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20"
                       >
                         {s.ctaSecondary.label}
-                      </a>
+                      </motion.a>
                     )}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-
-      {/* Arrows */}
-      {total > 1 && (
-        <div className="pointer-events-none absolute inset-0 hidden md:flex items-center justify-between px-2 sm:px-4">
-          <button
-            aria-label="Slide précédent"
-            onClick={prev}
-            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/0 md:bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white group-active:scale-95 transition">
-              <path fillRule="evenodd" d="M15.78 4.22a.75.75 0 010 1.06L9.06 12l6.72 6.72a.75.75 0 11-1.06 1.06l-7.25-7.25a.75.75 0 010-1.06l7.25-7.25a.75.75 0 011.06 0z" clipRule="evenodd" />
-            </svg>
-          </button>
-          <button
-            aria-label="Slide suivant"
-            onClick={next}
-            className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/5 md:bg-black/40 hover:bg-black/60 backdrop-blur ring-1 ring-white/15 transition focus:outline-none focus-visible:ring-2 md:focus-visible:ring-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 text-white group-active:scale-95 transition">
-              <path fillRule="evenodd" d="M8.22 19.78a.75.75 0 010-1.06L14.94 12 8.22 5.28a.75.75 0 011.06-1.06l7.25 7.25a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0z" clipRule="evenodd" />
-            </svg>
-          </button>
-        </div>
-      )}
 
       {/* Bullets */}
       {total > 1 && (
@@ -246,15 +313,15 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
           {slides.map((s, i) => (
             <button
               key={s.id}
-              aria-label={`Aller au slide ${i + 1}`}
-              className={`h-2.5 w-2.5 rounded-full ring-1 ring-white/30 transition ${i === index ? "bg-white" : "bg-white/30 hover:bg-white/60"}`}
               onClick={() => go(i)}
+              className={`h-2.5 w-2.5 rounded-full ring-1 ring-white/30 ${i === index ? "bg-white" : "bg-white/40"
+                }`}
             />
           ))}
         </div>
       )}
 
-      {/* Progress bar (autoplay indicator) */}
+      {/* Progress bar */}
       {total > 1 && (
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10">
           <div ref={progressRef} className="h-full w-0 bg-blue-500" />
@@ -264,13 +331,17 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
   )
 }
 
+/* ============================
+   Slides example
+============================ */
+
 export const heroSlides: HeroSlide[] = [
   {
     id: 1,
     title: "Construisons l’Afrique digitale, un projet à la fois.",
     subtitle: "Gratias Technology",
     description:
-      "Du site vitrine aux plateformes SaaS sur‑mesure : nous transformons vos idées en solutions fiables, élégantes et évolutives.",
+      "Du site vitrine aux plateformes SaaS sur-mesure : des solutions fiables, élégantes et évolutives.",
     image: "/images/home/hero/africa-digital.jpg",
     ctaPrimary: { label: "Voir nos réalisations", href: "/portfolio" },
     ctaSecondary: { label: "Demander un devis", href: "/contact" },
