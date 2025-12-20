@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * HeroCarousel – production‑ready, dependency‑free carousel for Next.js + Tailwind
@@ -181,9 +182,13 @@ export default function HeroCarousel({ slides, autoPlayMs = 5000, className = ""
                     {s.title}
                   </h1>
                   {s.description && (
-                    <p className="mt-4 text-center md:text-start text-base md:text-xl text-white/90 max-w-3xl">
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 1.2 }}
+                      className="mt-4 text-center md:text-start text-base md:text-xl text-white/90 max-w-3xl">
                       {s.description}
-                    </p>
+                    </motion.p>
                   )}
 
                   <div className="mt-24 md:mt-12 flex flex-wrap items-center gap-3">
