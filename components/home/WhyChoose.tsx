@@ -2,6 +2,44 @@
 
 import { Users, Code, Globe, Rocket, CheckCircle } from "lucide-react";
 import React from 'react';
+import { motion, Variants } from "framer-motion";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const gridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 
 const features = [
   {
@@ -26,27 +64,52 @@ const features = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="relative py-8 md:pt-12 overflow-hidden">
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative py-8 md:pt-12 overflow-hidden"
+    >
+
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header de la section */}
-        <div className="text-center mb-8">
+        <motion.div
+          variants={headerVariants}
+          className="text-center mb-8"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Pourquoi choisir <span className="bg-blue-500 bg-clip-text text-transparent">Gratias Technology</span> ?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Nous ne nous contentons pas de coder, nous construisons un partenariat durable.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grille des fonctionnalités */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-8">
+        <motion.div
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-8"
+        >
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative h-full p-3 lg:p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              variants={cardVariants}
+              whileHover={{ y: -8 }}
+              className="group relative h-full p-3 lg:p-8 bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-2xl transition-shadow duration-300"
             >
+
               <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300">
-                <div className={`h-full w-full ${feature.iconBgClass} rounded-xl`}></div>
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className={`p-4 rounded-full inline-flex items-center justify-center mb-6 ${feature.iconBgClass}`}
+                >
+                  {feature.icon}
+                </motion.div>
               </div>
 
               <div className="relative z-10">
@@ -61,10 +124,10 @@ export default function WhyChooseSection() {
                 {/* Titre et description */}
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section >
   );
 }

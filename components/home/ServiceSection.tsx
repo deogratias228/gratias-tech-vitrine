@@ -1,5 +1,43 @@
 "use client";
 import { useState } from 'react';
+import { motion, Variants } from "framer-motion";
+
+const sectionVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
+
+const headerVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut" },
+    },
+}
+
+const gridVariants: Variants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.2,
+        },
+    },
+}
+
+const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
+
 
 export default function ServicesSection() {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -57,10 +95,19 @@ export default function ServicesSection() {
 
 
     return (
-        <section className="relative py-8 md:py-12 overflow-hidden">
+        <motion.section
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="relative py-8 md:py-12 overflow-hidden"
+        >
             <div className="relative max-w-7xl mx-auto px-6">
                 {/* Header avec animation */}
-                <div className="text-center mb-8">
+                <motion.div
+                    variants={headerVariants}
+                    className="text-center mb-8"
+                >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-3 md:mb-6">
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                         Nos expertises
@@ -77,18 +124,24 @@ export default function ServicesSection() {
                         Nous accompagnons les entreprises ambitieuses avec des solutions web sur mesure,
                         de la conception à la maintenance, pour transformer vos défis en opportunités de croissance.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Services Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 md:justify-items-center">
+                <motion.div
+                    variants={gridVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 md:justify-items-center"
+                >
                     {services.map((service) => (
-                        <div
+                        <motion.div
                             key={service.id}
-                            className={`relative group cursor-pointer transition-all duration-500 w-full max-w-sm ${hoveredCard === service.id ? 'scale-105' : 'scale-100'
-                                }`}
-                            onMouseEnter={() => setHoveredCard(service.id)}
-                            onMouseLeave={() => setHoveredCard(null)}
+                            variants={cardVariants}
+                            whileHover={{ y: -8 }}
+                            className="relative group cursor-pointer w-full max-w-sm"
                         >
+
                             {/* Badge */}
                             {service.badge && (
                                 <div className="absolute -top-3 left-6 z-10">
@@ -141,22 +194,25 @@ export default function ServicesSection() {
 
                                     {/* CTA */}
                                     <div className="pt-4 border-t border-slate-100 mt-auto">
-                                        <a
+                                        <motion.a
+                                            whileHover={{ x: 4 }}
+                                            transition={{ type: "spring", stiffness: 300 }}
                                             href={service.link}
                                             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors group/link"
                                         >
+
                                             {/* {service.cta} */}
                                             En savoir plus
                                             <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
-                                        </a>
+                                        </motion.a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* Bottom CTA */}
                 <div className="text-center">
@@ -169,7 +225,14 @@ export default function ServicesSection() {
                                 Discutons de votre projet et recevez un devis personnalisé sous 24h
                             </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-3">
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                            className="flex flex-col sm:flex-row gap-3"
+                        >
+
                             <a
                                 href="/contact"
                                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200"
@@ -182,10 +245,10 @@ export default function ServicesSection() {
                             >
                                 Voir nos réalisations
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section >
     );
 }

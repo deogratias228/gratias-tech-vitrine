@@ -50,7 +50,7 @@ export const projects: Project[] = [
         status: "completed",
         duration: "1 mois",
         year: 2025,
-        demoUrl: "https://quickcv.gratias.com",
+        demoUrl: "https://quickcv.deowoblesse.tech",
         githubUrl: "https://github.com/deogratias228/quickcv-generator"
     },
     {
